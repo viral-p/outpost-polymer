@@ -1,0 +1,98 @@
+<link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="bower_components/paper-tabs/paper-tab.html">
+
+<polymer-element name="outpost-header">
+    <template>
+        <style>
+            #matchTabs
+            {
+                font-size: 22px;
+            }
+        </style>
+        
+        <core-ajax id="attain"
+            auto
+            url="/{{survey}}"
+            handleAs="json"
+            on-core-response="{{operational}}">
+        </core-ajax>
+        
+        <div horizontal layout center>
+            <paper-tabs id="matchTabs" selected="0">
+                <paper-tab>Auto</paper-tab>
+                <paper-tab>Tele</paper-tab>
+            </paper-tabs>
+            
+            <div>
+                Match: <u>{{matchNumber}}</u>
+                Team: <u>{{teamNumber}}</u>
+                Alliance: <u>{{allies[0]}}, {{allies[1]}}</u>
+                Opponents: <u>{{opposition[0]}}, {{opposition[1]}}, {{opposition[2]}}</u>
+            </div>
+        </div>
+    </template>
+    
+    <script>
+        Polymer({
+            allies: [],
+            opposition: [],
+            operational: function()
+            {
+                if(this.survey.search(/last/) > -1)
+                {
+                    window.localStorage.setItem("lastPlayed", this.$.attain.response.MatchNumber);
+                    this.matchNumber = parseInt(this.$.attain.response.MatchNumber) + 1;
+                    this.survey = 'rest/match/'+this.matchNumber;
+                }
+                else
+                {
+                    this.instance = window.sessionStorage.getItem('instanceId');
+                    this.teamNumber = this.$.attain.response[this.instance];
+                    this.scanForAllies(this.instance.length - 1);
+                    this.scanForOpposition();
+                }
+            },
+            scanForAllies: function(stnIndex)
+            {
+                var allies = [0, 0, 0];
+                var i = 0;
+                allies[this.instance[stnIndex] - 1] = 1;
+                for(ally in allies)
+                {
+                    if(!allies[ally])
+                    {
+                        ally++;
+                        this.allies[i++] = this.$.attain.response[this.instance.replace(/[0-9]/, ally)];
+                    }
+                }
+            },
+            scanForOpposition: function()
+            {
+                if(this.instance.search(/red/i) > -1)
+                {
+                    this.opposition[0] = this.$.attain.response['Blue1'];
+                    this.opposition[1] = this.$.attain.response['Blue2'];
+                    this.opposition[2] = this.$.attain.response['Blue3'];
+                }
+                else
+                {
+                    this.opposition[0] = this.$.attain.response['Red1'];
+                    this.opposition[1] = this.$.attain.response['Red2'];
+                    this.opposition[2] = this.$.attain.response['Red3'];
+                }
+            },
+            ready: function()
+            {
+                if(!window.sessionStorage.getItem('instanceId'))
+                {
+                    window.location.assign("outpost.html");
+                }
+                else
+                {
+                    this.station = window.sessionStorage.getItem('instanceId');
+                    this.survey = "rest/last/"+this.station;
+                }
+            }
+        });
+    </script>
+</polymer-element>

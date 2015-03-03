@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Outpost</title>
+
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
+
+        <link rel="import" href="../finished/components/font-roboto/roboto.html">
+        <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
+        <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+        <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+        <link rel="import" href="number-counter.html">
+        <link rel="import" href="outpost-engage.html">
+        <link rel="import" href="outpost-header.html">
+    </head>
+    
+    <style>
+      html,body {
+        height: 100%;
+        margin: 0;
+        background-color: #E5E5E5;
+        font-family: 'RobotoDraft', sans-serif;
+      }
+      core-header-panel {
+        height: 100%;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch; 
+      }
+        core-scaffold /deep/ core-toolbar{
+            background-color: #ff5559; 
+            /* ff888b lighter red*/
+        }
+      core-toolbar {
+        background: #ff5559;
+        color: white;
+      }
+      #tabs {
+        width: 100%;
+        margin: 0;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        text-transform: uppercase;
+      }
+      .container {
+        width: 80%;
+        margin: 50px auto;
+      }
+      @media (min-width: 481px) {
+        #tabs {
+          width: 200px;
+        }
+        .container {
+          width: 400px;
+        }
+      }
+    </style>
+
+    <body unresolved fullbleed>
+        <core-scaffold id="scaffold">
+            <core-header-panel navigation flex>
+                <core-toolbar>
+                    <div>Menu</div>
+                </core-toolbar>
+            </core-header-panel>
+            
+            <outpost-header tool></outpost-header>
+            
+            <div>Main</div>
+        </core-scaffold>
+<!--        <number-counter></number-counter>-->
+<!--        <outpost-engage></outpost-engage>-->
+        <script>
+            var tabs = document.querySelector('paper-tabs');
+            var list = document.querySelector('post-list');
+            
+            //  tabs.addEventListener('core-select', function() {
+            //    list.show = tabs.selected;
+            //  });
+        </script>
+    </body>
+</html>
