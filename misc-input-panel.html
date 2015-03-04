@@ -1,0 +1,54 @@
+<link rel="import" href="bower_components/paper-input/paper-input-decorator.html">
+<link rel="import" href="bower_components/paper-input/paper-autogrow-textarea.html">
+
+<polymer-element name = "misc-input-panel">
+	<template>
+		<bs-container>
+			<bs-row>
+                <bs-col sm=2>
+                    <paper-input-decorator id="penalty-decorator" label="Penalties" floatingLabel>
+                        <input id="penalty" type="tel">
+                    </paper-input-decorator>
+                </bs-col>
+                <bs-col sm=2>
+                    <paper-input-decorator id="alliance-decorator" label="Alliance Score" floatingLabel>
+                        <input id="alliance" type="tel">
+                    </paper-input-decorator>
+                </bs-col>
+				<bs-col sm=2>
+                    <paper-input-decorator id="opponent-decorator" label="Opponent's Score" floatingLabel>
+                        <input id="opponent" type="tel">
+                    </paper-input-decorator>
+                </bs-col>
+			</bs-row>
+			<bs-row>
+				<bs-col sm=5>
+                    <paper-input-decorator id="paper-comments" label="Comments" floatingLabel>
+                        <paper-autogrow-textarea>
+                            <textarea id="comments" placeholder aria-label="Comments"></textarea>
+                        </paper-autogrow-textarea>
+                    </paper-input-decorator>
+                </bs-col>
+			</bs-row>
+            <button type="button" on-click="{{submitData}}">Submit</button>
+		</bs-container>
+	</template>
+	<script>
+		Polymer({
+			submitData: function(){
+                var miscForm = {};
+                miscForm["AllianceSore"] = parseInt(this.$.alliance.value);
+                miscForm["OpponentScore"] = parseInt(this.$.opponent.value);
+                miscForm["Penalties"] = parseInt(this.$.penalty.value);
+                miscForm["Comments"] = this.$.comments.value;
+
+                this.$.alliance.value = "";
+                this.$.opponent.value = "";
+                this.$.penalty.value = "";
+                this.$.comments.value = "";
+                
+                window.sessionStorage.setItem("submitForm", JSON.stringify(miscForm));
+            }
+		});
+	</script>
+</polymer-element>

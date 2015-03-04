@@ -1,65 +1,37 @@
-<link rel="import" href="bower_components/polymer/polymer.html">
-  <link rel="import"
-    href="bower_components/core-toolbar/core-toolbar.html">
-  <link rel="import"
-    href="bower_components/paper-tabs/paper-tabs.html">
-<link rel="import" href="bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
 
-<polymer-element name="number-counter" attributes = "idLabel">
+<polymer-element name="number-counter" attributes = "values sumLimit valueLimits">
 	<template>
-        <style>
-  core-toolbar {
-    background: #f8f;
-    color: white;
-  }
-  #tabs {
-    width: 30%;
-    margin: 0;
-	text-transform: uppercase;
-  }
-  .container {
-    width: 80%;
-    margin: 50px auto;
-  }
-  </style>
-    <core-toolbar>
-      <paper-tabs id="tabs" selected="all" self-end>
-        <paper-tab name="all">All</paper-tab>
-        <paper-tab name="favorites">Favorites</paper-tab>
-      </paper-tabs>
-        <label id="match">Match: <u>{{matchNumber}}</u></label>
-        <label id="match">Alliance: <u>{{alliance[0]}} | {{alliance[1]}} | {{alliance[2]}}</u></label>
-    </core-toolbar>
-    <core-ajax id="ajax"
-  auto
-  url="./../rest/match/{{matchNumber}}"
-  handleAs="json"
-  on-core-response="{{callback}}"></core-ajax>
-
-<!--
+		<strong style="text-align:centre">{{id}}</strong>
         <template repeat="{{value, i in values}}">
             <div>
-             <core-icon-button
-              id="decreaseButton"
-              icon="expand-more"
-              on-tap="{{decrease}}">
-              </core-icon-button>
-              <label id="valueDisplay"> {{value}} </label>
-
-              <core-icon-button
-              id="increaseButton"
-              icon="expand-less"
-              on-tap="{{increase}}">
-              </core-icon-button>
+				<core-icon-button
+				id="decreaseButton"
+				icon="expand-more"
+				on-tap="{{decrease}}">
+				</core-icon-button>
+				<label id="valueDisplay"> {{value}} </label>
+				<core-icon-button
+				id="increaseButton"
+				icon="expand-less"
+				on-tap="{{increase}}">
+				</core-icon-button>
             </div>
 	   </template>
--->
     </template>
+	
 	<script>
 		Polymer({
 			values: [0, 0, 0, 0, 0, 0],
-            matchNumber: 0,
-            alliance: [],
+            valueLimits: [50, 50, 50, 50, 50, 50],
+            sumLimit: 99,
+            sum: 0,
+            valuesChanged: function(oldVal, newVal){
+                this.sum = 0;
+                for (v in this.values){
+                    this.sum += this.values[v];
+                }
+            },
 			decrease: function (event, detail, sender) {
 				var i = event.target.templateInstance.model.i;
 				if(this.values[i] != 0){
@@ -68,21 +40,16 @@
 			},
 			increase: function (event, detail, sender) {
 				var i = event.target.templateInstance.model.i;
-				this.values[i] = this.values[i] + 1;
+                
+                if (this.sum + 1 <= this.sumLimit && this.values[i] + 1 <= this.valueLimits[i]){
+				    this.values[i] = this.values[i] + 1;
+                }
 			},
-            callback: function(event, detail, sender)
-            {
-//                console.dir(sender);
-//                this.alliance[0] = "test";
-                event.target.templateInstance.model.alliance.push(this.$.ajax.response.Red1);
-                event.target.templateInstance.model.alliance.push(this.$.ajax.response.Red2);
-                event.target.templateInstance.model.alliance.push(this.$.ajax.response.Red3);
-//                window.alert(this.$.ajax.response.MatchNumber);
-            },
-            ready: function()
-            {
-                this.matchNumber++;
-            }
+			reset: function(event, detail, sender) {
+				for(i in this.values){
+					this.values[i] = 0;
+				}
+			}
 		});
 	</script>
 </polymer-element>

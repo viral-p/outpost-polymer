@@ -1,12 +1,25 @@
 <link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="bower_components/core-ajax/core-ajax.html">
 
-<polymer-element name="outpost-header">
+<polymer-element name="outpost-header" attributes="selected">
     <template>
         <style>
+            .formHeaderMedium
+            {
+                font-size: 20px;
+            }
+            .formHeaderSmall
+            {
+                font-size: 16px;
+            }
             #matchTabs
             {
                 font-size: 22px;
+            }
+            #matchTabs
+            {
+                width: 55%;
             }
         </style>
         
@@ -18,16 +31,21 @@
         </core-ajax>
         
         <div horizontal layout center>
-            <paper-tabs id="matchTabs" selected="0">
+            <paper-tabs id="matchTabs" selected="{{selected}}">
                 <paper-tab>Auto</paper-tab>
                 <paper-tab>Tele</paper-tab>
+                <paper-tab>Misc</paper-tab>
             </paper-tabs>
             
             <div>
-                Match: <u>{{matchNumber}}</u>
-                Team: <u>{{teamNumber}}</u>
-                Alliance: <u>{{allies[0]}}, {{allies[1]}}</u>
-                Opponents: <u>{{opposition[0]}}, {{opposition[1]}}, {{opposition[2]}}</u>
+                <span class="formHeaderSmall">
+                    <bs-col xs="6">{{alliance}} {{allies[0]}}, {{allies[1]}}</bs-col>
+                    <bs-col xs="6">{{opponent}} {{opposition[0]}}, {{opposition[1]}}, {{opposition[2]}}</bs-col>
+                </span>
+                <span class="formHeaderMedium">
+                    <bs-col xs="6">Match: <u style="color: #64FFDA;">{{matchNumber}}</u></bs-col>
+                    <bs-col xs="6">Team: <u style="color: #64FFDA;">{{teamNumber}}</u></bs-col>
+                </span>
             </div>
         </div>
     </template>
@@ -36,11 +54,16 @@
         Polymer({
             allies: [],
             opposition: [],
+            test: function()
+            {
+                console.log('test');
+            },
             operational: function()
             {
+                console.log('response');
                 if(this.survey.search(/last/) > -1)
                 {
-                    window.localStorage.setItem("lastPlayed", this.$.attain.response.MatchNumber);
+                    console.log('lastPlayed');
                     this.matchNumber = parseInt(this.$.attain.response.MatchNumber) + 1;
                     this.survey = 'rest/match/'+this.matchNumber;
                 }
@@ -49,8 +72,20 @@
                     this.instance = window.sessionStorage.getItem('instanceId');
                     this.teamNumber = this.$.attain.response[this.instance];
                     this.scanForAllies(this.instance.length - 1);
-                    this.scanForOpposition();
+                    this.scanForOpposition(this.instance.length - 1);
+                    this.createRecord();
                 }
+            },
+            createRecord: function()
+            {
+                this.header = {
+                    "MatchNumber": this.matchNumber,
+                    "TeamNumber": this.teamNumber,
+                    "Station": this.station
+                };
+                
+                window.sessionStorage.setItem("headerData", JSON.stringify(this.header));
+                window.sessionStorage.setItem("formNumber", this.formNumber);
             },
             scanForAllies: function(stnIndex)
             {
@@ -66,19 +101,25 @@
                     }
                 }
             },
-            scanForOpposition: function()
+            scanForOpposition: function(stnIndex)
             {
                 if(this.instance.search(/red/i) > -1)
                 {
                     this.opposition[0] = this.$.attain.response['Blue1'];
                     this.opposition[1] = this.$.attain.response['Blue2'];
                     this.opposition[2] = this.$.attain.response['Blue3'];
+                    this.formNumber = (this.matchNumber - 1) * 6 + parseInt(this.instance[stnIndex]);
+                    this.opponent = "Blue:";
+                    this.alliance = "Red:";
                 }
                 else
                 {
                     this.opposition[0] = this.$.attain.response['Red1'];
                     this.opposition[1] = this.$.attain.response['Red2'];
                     this.opposition[2] = this.$.attain.response['Red3'];
+                    this.formNumber = (this.matchNumber - 1) * 6 + parseInt(this.instance[stnIndex]) + 3;
+                    this.opponent = "Red:";
+                    this.alliance = "Blue:";
                 }
             },
             ready: function()
@@ -89,6 +130,7 @@
                 }
                 else
                 {
+                    console.log('ready');
                     this.station = window.sessionStorage.getItem('instanceId');
                     this.survey = "rest/last/"+this.station;
                 }
