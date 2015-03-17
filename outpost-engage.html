@@ -1,0 +1,66 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/paper-input/paper-input.html">
+<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="bower_components/paper-toast/paper-toast.html">
+
+<polymer-element name="outpost-engage">
+    <template>
+        <paper-input label="Enter Passphrase" id="instanceId"></paper-input>
+        <paper-icon-button id="submit" on-tap="{{engage}}" icon="send"></paper-icon-button>
+        <paper-toast id="toast" text="{{msg}}" duration="1500"></paper-toast>
+    </template>
+    
+    <script>
+        Polymer({
+            engage: function(event, detail, sender)
+            {
+                var alert = false;
+                switch(this.$.instanceId.value)
+                {
+                    case "Red1":
+                        this.msg = "Red Station 1 -- Scout";
+                        window.sessionStorage.setItem("instanceId", this.$.instanceId.value);
+                        break;
+                    case "Red2":
+                        this.msg = "Red Station 2 -- Scout";
+                        window.sessionStorage.setItem("instanceId", this.$.instanceId.value);
+                        break;
+                    case "Red3":
+                        this.msg = "Red Station 3 -- Scout";
+                        window.sessionStorage.setItem("instanceId", this.$.instanceId.value);
+                        break;
+                    case "Blue1":
+                        this.msg = "Blue Station 1 -- Scout";
+                        window.sessionStorage.setItem("instanceId", this.$.instanceId.value);
+                        break;
+                    case "Blue2":
+                        this.msg = "Blue Station 2 -- Scout";
+                        window.sessionStorage.setItem("instanceId", this.$.instanceId.value);
+                        break;
+                    case "Blue3":
+                        this.msg = "Blue Station 3 -- Scout";
+                        window.sessionStorage.setItem("instanceId", this.$.instanceId.value);
+                        break;
+                    case "strat":
+                        this.msg = "Strategy Summary -- Read Only";
+                        window.sessionStorage.setItem("instanceId", this.$.instanceId.value);
+                        break;
+                    default:
+                        this.msg = "Please enter a valid passphrase!";
+                        alert = true;
+                        window.sessionStorage.removeItem("instanceId");
+                        break;
+                }
+                this.$.toast.show();
+                if(!alert)
+                {
+                    window.location.assign("index.html");
+                }
+            },
+            ready: function()
+            {
+                window.sessionStorage.removeItem("instanceId");
+            }
+        });
+    </script>
+</polymer-element>

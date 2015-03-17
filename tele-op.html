@@ -1,0 +1,129 @@
+<link rel="import" href="bower_components/twbs-grid/twbs-grid.html">
+<link rel="import" href="number-counter.html">
+
+<polymer-element name = "tele-op">
+	<template>
+		<style>
+			ul{
+				list-style: none;
+				margin: 0px;
+				padding: 0px;
+				padding-right: 55px;
+				border-right: 3px solid #64FFDA;
+			}
+			h5{
+				margin: 0px;
+				padding: 0px;
+			}
+		</style>
+		<bs-container>
+			<bs-row>
+                <bs-col xs="12"><h3>Tele Op</h3></bs-col>
+            </bs-row>
+			<bs-row>
+				<bs-col xs="2">
+					<ul>
+                    <li><h5>Location</h5></li>
+					<li><h4>Landfill</h4></li>
+					<li><h4>Human Load</h4></li>
+					<li><h4>Step</h4></li>
+					<li><h4>Upside Down</h4></li>
+					</ul>
+				</bs-col>
+				<bs-col xs="3">
+                    <number-counter id = "totesAcquired" values = [0,0,0,0] valueLimits = [28,33,12,100]></number-counter>
+                </bs-col>
+				<bs-col xs="2">
+					<ul>
+                    <li><h5>Location</h5></li>
+					<li><h4>Step</h4></li>
+                    <li><h4>Zone</h4></li>
+					<li><h4>Not Upright</h4></li>
+					</ul>
+				</bs-col>
+				<bs-col xs="3">
+                    <number-counter id = "binsAcquired" values = [0,0,0] valueLimits = [4,7,7]></number-counter>
+                </bs-col>
+			</bs-row>
+            <br>
+			<bs-row>
+				<bs-col xs="2">
+					<ul>				
+					<li><h5>Level</h5></li>
+					<li><h4>6</h4></li>
+					<li><h4>5</h4></li>
+					<li><h4>4</h4></li>
+					<li><h4>3</h4></li>
+					<li><h4>2</h4></li>
+					<li><h4>1</h4></li>
+					</ul>
+				</bs-col>
+				<bs-col xs="3"><number-counter id = "totesScored" values = [0,0,0,0,0,0]></number-counter></bs-col>
+				<bs-col xs="2">
+					<ul>		
+					<li><h5>Level</h5></li>
+					<li><h4>6</h4></li>
+					<li><h4>5</h4></li>
+					<li><h4>4</h4></li>
+					<li><h4>3</h4></li>
+					<li><h4>2</h4></li>
+					<li><h4>1</h4></li>
+					</ul>
+				</bs-col>
+				<bs-col xs="3"><number-counter id = "binsScored" values = [0,0,0,0,0,0] sumLimit = 7></number-counter></bs-col>
+			</bs-row>
+			<bs-row>
+				<bs-col xs="2">
+				</bs-col>
+				<bs-col xs="3"><number-counter id = "litterProcessed" values = [0] sumLimit = 10></number-counter></bs-col>
+				<bs-col xs="2"></bs-col>
+				<bs-col xs="3"><number-counter id = "litterCapped" values = [0] sumLimit = 10></number-counter></bs-col>
+			</bs-row>
+            <bs-row>
+                <bs-col xs="12"> <button on-click="{{submitData}}">Submit that Data Doe</button></bs-col>
+            </bs-row>
+		</bs-container>
+        <paper-toast id="toast" text="{{msg}}" duration="3000"></paper-toast>
+	</template>
+	<script>
+		Polymer({
+			submitData: function(){
+                var teleOpForm = {};
+                if(this.$.binsScored.sum > this.$.binsAcquired.sum){
+                    this.msg = ("More Bins scored than acquired");
+                    this.$.toast.show();
+                }
+                else if(this.$.totesScored.sum > this.$.totesAcquired.sum){
+                    this.msg = ("More Totes scored than acquired");
+                    this.$.toast.show();
+                }
+                else{   
+                    teleOpForm["TotesAcquiredLandfill"] = this.$.totesAcquired.values[0];
+                    teleOpForm["TotesAcquiredHumanLoad"] = this.$.totesAcquired.values[1];
+                    teleOpForm["TotesAcquiredStep"] = this.$.totesAcquired.values[2];
+                    teleOpForm["UpsideDownTotesAcquired"] = this.$.totesAcquired.values[3];
+
+                    teleOpForm["BinsAcquiredStep"] = this.$.binsAcquired.values[0];
+                    teleOpForm["BinsAcquiredZone"] = this.$.binsAcquired.values[1];
+                    teleOpForm["NonUprightBinsAcquired"] = this.$.binsAcquired.values[2];
+
+
+                    teleOpForm["TotesScored"] = this.$.totesScored.values;
+                    teleOpForm["BinsScored"] = this.$.binsScored.values;
+
+                    teleOpForm["LitterProcessed"] = this.$.litterProcessed.values[0];
+                    teleOpForm["LitterCapped"] = this.$.litterCapped.values[0];
+                    
+                    this.$.totesAcquired.reset();
+                    this.$.binsAcquired.reset();
+                    this.$.totesScored.reset();
+                    this.$.binsScored.reset();
+                    this.$.litterProcessed.reset();
+                    this.$.litterCapped.reset();
+                }
+                window.sessionStorage.setItem("teleopForm", JSON.stringify(teleOpForm));
+                document.querySelector('outpost-header /deep/ paper-tabs').selected++;
+            }
+		});
+	</script>
+</polymer-element>
