@@ -15,6 +15,7 @@
         <link rel="import" href="outpost-header.html">
         <link rel="import" href="tele-op.html">
         <link rel="import" href="misc-input-panel.html">
+        <link rel="import" href="auto-form.html">
     </head>
     
     <style id="style">
@@ -56,7 +57,7 @@
 
                 <core-pages selected="{{mode}}" main>
                     <div>
-                        Auto Element goes here
+                        <auto-form></auto-form>
                     </div>
                     <div>
                         <tele-op></tele-op>
@@ -72,6 +73,7 @@
         <script>
             var extBind = document.querySelector('#external-binding');
             var style = document.querySelector('#style');
+            
             extBind.mode = 0;
             
             if(window.sessionStorage.getItem('instanceId').search(/blue/i) > -1)

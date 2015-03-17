@@ -27,6 +27,7 @@
             auto
             url="/{{survey}}"
             handleAs="json"
+            headers='{"Content-Type": "application/json"}'
             on-core-response="{{operational}}">
         </core-ajax>
         
@@ -51,26 +52,79 @@
     </template>
     
     <script>
+        document.addEventListener('submit-form', function(evt, detail)
+                                  {
+            var miscForm = evt.detail.misc;
+            var autoForm = evt.detail.auto;
+            var teleopForm = evt.detail.teleop;
+            var header = evt.detail.header;
+            var ajax = document.querySelector('outpost-header::shadow core-ajax');
+            var fn = window.sessionStorage.getItem('formNumber');
+            ajax.method = "POST";
+            var form = {
+                          "FormNumber": fn,
+                          "MatchNumber": header.MatchNumber,
+                          "TeamNumber": header.TeamNumber,
+                          "Station": header.Station,
+                          "Penalties": miscForm.Penalties,
+                          "AllianceScore": miscForm.AllianceScore,
+                          "OpponentScore": miscForm.OpponentScore,
+                          "Comments": miscForm.Comments,
+                          "AutoMobility": autoForm.AutoMobility,
+                          "AutoBinsMoved": autoForm.AutoBinsMoved,
+                          "AutoBinsScored": autoForm.AutoBinsScored,
+                          "AutoTotesMoved": autoForm.AutoTotesMoved,
+                          "AutoTotesStacked": autoForm.AutoTotesStacked,
+                          "AutoTotesScored": autoForm.AutoTotesScored,
+                          "LandfillTotesAcquired": autoForm.LandfillTotesAcquired,
+                          "StepTotesAcquired": autoForm.StepTotesAcquired,
+                          "StepBinsAcquired": autoForm.StepBinsAcquired,
+                          "TotesScored": [
+                            teleopForm.TotesScored[0],
+                            teleopForm.TotesScored[1],
+                            teleopForm.TotesScored[2],
+                            teleopForm.TotesScored[3],
+                            teleopForm.TotesScored[4],
+                            teleopForm.TotesScored[5]
+                          ],
+                          "BinsScored": [
+                            teleopForm.BinsScored[0],
+                            teleopForm.BinsScored[1],
+                            teleopForm.BinsScored[2],
+                            teleopForm.BinsScored[3],
+                            teleopForm.BinsScored[4],
+                            teleopForm.BinsScored[5]
+                          ],
+                          "LitterProcessed": teleopForm.LitterProcessed,
+                          "LitterCapped": teleopForm.LitterCapped,
+                          "TotesAcquiredLandfill": teleopForm.TotesAcquiredLandfill,
+                          "TotesAcquiredHumanLoad": teleopForm.TotesAcquiredHumanLoad,
+                          "TotesAcquiredStep": teleopForm.TotesAcquiredStep,
+                          "BinsAcquiredStep": teleopForm.BinsAcquiredStep,
+                          "BinsAcquiredZone": teleopForm.BinsAcquiredZone,
+                          "UpsideDownTotesAcquired": teleopForm.UpsideDownTotesAcquired,
+                          "NonUprightBinsAcquired": teleopForm.NonUprightBinsAcquired
+                        };
+            ajax.body = JSON.stringify(form);
+            ajax.url = "rest/form/" + window.sessionStorage.getItem('formNumber');
+            
+            console.dir(evt.detail);
+        });
         Polymer({
             allies: [],
             opposition: [],
-            test: function()
-            {
-                console.log('test');
-            },
+            test: document.querySelector('misc-input-panel'),
             operational: function()
             {
-                console.log('response');
                 if(this.survey.search(/last/) > -1)
                 {
-                    console.log('lastPlayed');
                     this.matchNumber = parseInt(this.$.attain.response.MatchNumber) + 1;
                     this.survey = 'rest/match/'+this.matchNumber;
                 }
                 else
                 {
                     this.instance = window.sessionStorage.getItem('instanceId');
-                    this.teamNumber = this.$.attain.response[this.instance];
+                    this.teamNumber = parseInt(this.$.attain.response[this.instance]);
                     this.scanForAllies(this.instance.length - 1);
                     this.scanForOpposition(this.instance.length - 1);
                     this.createRecord();
@@ -130,7 +184,6 @@
                 }
                 else
                 {
-                    console.log('ready');
                     this.station = window.sessionStorage.getItem('instanceId');
                     this.survey = "rest/last/"+this.station;
                 }
