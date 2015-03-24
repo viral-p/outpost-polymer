@@ -1,0 +1,40 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="json-table" attributes = "_json">
+	<template>
+		<style>
+		</style>
+		<table id="display">
+			<tr id="TableHeading">
+				<template repeat="{{heading, i in tableHeadings}}">
+					<th>{{heading}}</th>
+				</template>
+			</tr>
+			<template repeat="{{entry, j in _json}}">
+				<tr>
+					<template repeat="{{heading, i in tableHeadings}}">
+						<td> {{entry[heading]}} </td>
+					</template>
+				</tr>
+			</template>
+		</table>
+	</template>
+	
+	<script>
+		Polymer({
+            _json: [],
+			tableHeadings: ["MatchNumber", "Red1", "Red2", "Red3", "Blue1", "Blue2", "Blue3"],
+			createHeaders: function(){
+				this.tableHeadings = Object.keys(this._json[0]);
+			},
+			_jsonChanged: function(oldValue, newValue){
+				this.tableHeadings = Object.keys(this._json[0]);
+			},
+			ready: function(){
+				if(typeof this._json == "string"){
+					this._json = JSON.parse(this._json);
+				}
+			}
+		});
+	</script>
+</polymer-element>
