@@ -52,9 +52,13 @@
                         break;
                 }
                 this.$.toast.show();
-                if(!alert)
+                if(!alert && this.$.instanceId.value != "strat")
                 {
                     window.location.assign("index.html");
+                }
+                else if(!alert && this.$.instanceId.value == "strat")
+                {
+                    window.location.assign("outpost-tactics.html");
                 }
             },
             ready: function()
