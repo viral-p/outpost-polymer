@@ -30,7 +30,7 @@
                     </paper-input-decorator>
                 </bs-col>
 			</bs-row>
-            <button type="button" on-click="{{submitData}}">Submit</button>
+            <paper-button raised on-click="{{submitData}}">Submit</paper-button>
 		</bs-container>
 	</template>
 	<script>
@@ -61,6 +61,7 @@
                 var autoForm = JSON.parse(window.sessionStorage.getItem('autoForm'));
                 var header = JSON.parse(window.sessionStorage.getItem('headerData'));
                 this.submitForm(this.miscForm, teleopForm, autoForm, header);
+                document.querySelector('outpost-header /deep/ paper-tabs').selected = 0;
             }
 		});
 	</script>

@@ -80,7 +80,9 @@
 				<bs-col xs="3"><number-counter id = "litterCapped" values = [0] sumLimit = 10></number-counter></bs-col>
 			</bs-row>
             <bs-row>
-                <bs-col xs="12"> <button on-click="{{submitData}}">Submit that Data Doe</button></bs-col>
+                <bs-col sm="3" style="padding-top: 20px;padding-bottom: 20px">
+                    <paper-button raised on-click="{{submitData}}">Submit</paper-button>
+                </bs-col>
             </bs-row>
 		</bs-container>
         <paper-toast id="toast" text="{{msg}}" duration="3000"></paper-toast>

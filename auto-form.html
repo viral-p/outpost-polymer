@@ -112,7 +112,7 @@
             </bs-row>
 
             <bs-col xs="4">
-                <paper-button raised on-click="{{submitData}}">Submit that Data Doe</paper-button>
+                <paper-button raised on-click="{{submitData}}">Submit</paper-button>
             </bs-col>
 
 
@@ -141,6 +141,7 @@
                 AutoForm["StepBinsAcquired"] = this.BinsStep? 1: 0;
 
                 window.sessionStorage.setItem("autoForm", JSON.stringify(AutoForm));
+                document.querySelector('outpost-header /deep/ paper-tabs').selected++;
             }
         });
     </script>
