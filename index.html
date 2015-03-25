@@ -9,6 +9,8 @@
         <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
         <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
         <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+        <link rel="import" href="bower_components/core-menu/core-menu.html">
+        <link rel="import" href="bower_components/paper-item/paper-item.html">
         <link rel="import" href="bower_components/core-pages/core-pages.html">
         <link rel="import" href="number-counter.html">
         <link rel="import" href="outpost-engage.html">
@@ -37,6 +39,10 @@
       core-toolbar {
         color: white;
       }
+      core-menu /deep/ core-icon
+      {
+          margin-right: 20px;
+      }
     core-scaffold::shadow core-header-panel
         {
             
@@ -55,6 +61,12 @@
                         <core-toolbar>
                             <div>Menu</div>
                         </core-toolbar>
+                        <core-menu>
+                            <paper-item on-tap="{{disengage}}">
+                                <core-icon id="decreaseButton" icon="exit-to-app"></core-icon>
+                                Logout
+                            </paper-item>
+                        </core-menu>
                     </core-header-panel>
 
                         <outpost-header tool selected="{{mode}}"></outpost-header>
@@ -79,6 +91,11 @@
 
             extBind.gate = false;
             extBind.mode = 0;
+            extBind.disengage = function()
+            {
+                window.sessionStorage.removeItem('instanceId');
+                extBind.gate = false;
+            };
 
             document.addEventListener("engage", function(evt)
             {
