@@ -1,13 +1,15 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
 <link rel="import" href="json-table.html">
 <link rel="import" href="bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+
 <polymer-element name="strategy-screen" attributes = "tableData">
 	<template>
-		<button id="Teams" on-click="{{getTeamList}}">Team List</button>
-		<button id="Matches" on-click="{{getMatchSchedule}}">Match Schedule</button>
+		<paper-button id="Teams" on-click="{{getTeamList}}">Team List</paper-button>
+		<paper-button id="Matches" on-click="{{getMatchSchedule}}">Match Schedule</paper-button>
 		<input id="numberInput">
-		<button id="Team" on-click="{{getTeam}}">Find Team</button>
-		<button id="Match" on-click="{{getMatch}}">Find Match</button>
+		<paper-button id="Team" on-click="{{getTeam}}">Find Team</paper-button>
+		<paper-button id="Match" on-click="{{getMatch}}">Find Match</paper-button>
 		<json-table _json= "{{tableData}}" id="tableView"></json-table>
 		<core-ajax id="ajaxRequest"
 				   auto
@@ -43,6 +45,6 @@
 			Response: function(){
 				this.tableData = this.$.ajaxRequest.response;
 			}
-		});	
+		});
 	</script>
 </polymer-element>

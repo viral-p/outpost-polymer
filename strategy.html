@@ -1,0 +1,55 @@
+<!doctype HTML>
+<html>
+    <head>
+        <title>Outpost</title>
+
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
+
+        <link rel="import" href="../finished/components/font-roboto/roboto.html">
+        <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
+        <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+        <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+        <link rel="import" href="bower_components/core-pages/core-pages.html">
+        <link rel="import" href="number-counter.html">
+        <link rel="import" href="outpost-engage.html">
+        <link rel="import" href="outpost-header.html">
+        <link rel="import" href="strategy-screen.html">
+    </head>
+    
+    <style id="style">
+      html,body {
+        height: 100%;
+        margin: 0;
+        background-color: #ffffff;
+        font-family: 'RobotoDraft', sans-serif;
+      }
+      core-header-panel {
+        height: 100%;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch; 
+      }
+        core-scaffold /deep/ core-toolbar{
+            background-color: #E53935; 
+            /* ff888b lighter red*/
+        }
+      core-toolbar {
+        color: white;
+      }
+    core-scaffold::shadow core-header-panel
+        {
+            
+            background-color: white;
+        }
+    </style>
+
+    <body>
+        <core-scaffold id="scaffold" responsiveWidth="700px" disableSwipe="true">
+            <core-header-panel navigation flex>
+                <core-toolbar>
+                    <div>Menu</div>
+                </core-toolbar>
+            </core-header-panel>
+            <strategy-screen></strategy-screen>
+        </core-scaffold>
+    </body>
+</html>
