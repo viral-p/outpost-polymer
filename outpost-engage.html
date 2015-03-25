@@ -54,11 +54,11 @@
                 this.$.toast.show();
                 if(!alert && this.$.instanceId.value != "strat")
                 {
-                    window.location.assign("index.html");
+                    this.fire('engage', {user: "scout"});
                 }
                 else if(!alert && this.$.instanceId.value == "strat")
                 {
-                    window.location.assign("outpost-tactics.html");
+                    this.fire('engage', {user: "strat"});
                 }
             },
             ready: function()

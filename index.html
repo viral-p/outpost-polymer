@@ -45,41 +45,49 @@
     </style>
 
     <body unresolved fullbleed>
-        <core-scaffold id="scaffold" responsiveWidth="700px" disableSwipe="true">
-            <core-header-panel navigation flex>
-                <core-toolbar>
-                    <div>Menu</div>
-                </core-toolbar>
-            </core-header-panel>
-            
-            <template id="external-binding" is="auto-binding">
-                <outpost-header tool selected="{{mode}}"></outpost-header>
-
-                <core-pages selected="{{mode}}" main>
-                    <div>
-                        <auto-form></auto-form>
-                    </div>
-                    <div>
-                        <tele-op></tele-op>
-                    </div>
-                    <div>
-                        <misc-input-panel></misc-input-panel>
-                    </div>
-                </core-pages>
+        <template id="external-binding" is="auto-binding">
+            <template if="{{!gate}}">
+                <outpost-engage></outpost-engage>
             </template>
-        </core-scaffold>
-<!--        <number-counter></number-counter>-->
-<!--        <outpost-engage></outpost-engage>-->
+            <template if="{{gate}}">
+                <core-scaffold id="scaffold" responsiveWidth="700px" disableSwipe="true">
+                    <core-header-panel navigation flex>
+                        <core-toolbar>
+                            <div>Menu</div>
+                        </core-toolbar>
+                    </core-header-panel>
+
+                        <outpost-header tool selected="{{mode}}"></outpost-header>
+
+                        <core-pages selected="{{mode}}" main>
+                            <div>
+                                <auto-form></auto-form>
+                            </div>
+                            <div>
+                                <tele-op></tele-op>
+                            </div>
+                            <div>
+                                <misc-input-panel></misc-input-panel>
+                            </div>
+                        </core-pages>
+                </core-scaffold>
+            </template>
+        </template>
         <script>
             var extBind = document.querySelector('#external-binding');
             var style = document.querySelector('#style');
-            
+
+            extBind.gate = false;
             extBind.mode = 0;
-            
-            if(window.sessionStorage.getItem('instanceId').search(/blue/i) > -1)
+
+            document.addEventListener("engage", function(evt)
             {
-                style.sheet.cssRules[2].style.backgroundColor = "#039BE5"
-            }
+                if(window.sessionStorage.getItem('instanceId').search(/blue/i) > -1)
+                {
+                    style.sheet.cssRules[2].style.backgroundColor = "#039BE5"
+                }
+                extBind.gate = true;
+            });
         </script>
     </body>
 </html>
