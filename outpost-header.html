@@ -118,7 +118,14 @@
             {
                 if(this.survey.search(/last/) > -1)
                 {
-                    this.matchNumber = parseInt(this.$.attain.response.MatchNumber) + 1;
+                    if(this.$.attain.response != null)
+                    {
+                        this.matchNumber = parseInt(this.$.attain.response.MatchNumber) + 1;
+                    }
+                    else
+                    {
+                        this.matchNumber = 1;
+                    }
                     this.survey = 'rest/match/'+this.matchNumber;
                 }
                 else
