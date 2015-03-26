@@ -114,13 +114,6 @@
                     teleOpForm["LitterProcessed"] = this.$.litterProcessed.values[0];
                     teleOpForm["LitterCapped"] = this.$.litterCapped.values[0];
                     
-                    this.$.totesAcquired.reset();
-                    this.$.binsAcquired.reset();
-                    this.$.totesScored.reset();
-                    this.$.binsScored.reset();
-                    this.$.litterProcessed.reset();
-                    this.$.litterCapped.reset();
-                    
                     window.sessionStorage.setItem("teleopForm", JSON.stringify(teleOpForm));
                     document.querySelector('outpost-header /deep/ paper-tabs').selected++;
                 }

@@ -107,8 +107,6 @@
                         };
             ajax.body = JSON.stringify(form);
             ajax.url = "rest/form/" + window.sessionStorage.getItem('formNumber');
-            
-            console.dir(evt.detail);
         });
         Polymer({
             allies: [],
@@ -130,6 +128,11 @@
                 }
                 else
                 {
+                    if(window.sessionStorage.getItem('replay'))
+                    {
+                        this.matchNumber = window.sessionStorage.getItem('replay');
+                        window.sessionStorage.removeItem('replay');
+                    }
                     this.instance = window.sessionStorage.getItem('instanceId');
                     this.teamNumber = parseInt(this.$.attain.response[this.instance]);
                     this.scanForAllies(this.instance.length - 1);
@@ -139,6 +142,20 @@
             },
             createRecord: function()
             {
+                window.sessionStorage.removeItem('autoForm');
+                window.sessionStorage.removeItem('teleopForm');
+                window.sessionStorage.removeItem('miscForm');
+                var pages = document.querySelector('html /deep/ core-pages');
+                pages.removeChild(pages.children[0]);
+                pages.removeChild(pages.children[0]);
+                pages.removeChild(pages.children[0]);
+                var auto = document.createElement('auto-form');
+                var teleop = document.createElement('tele-op');
+                var misc = document.createElement('misc-input-panel');
+                pages.appendChild(auto);
+                pages.appendChild(teleop);
+                pages.appendChild(misc);
+
                 this.header = {
                     "MatchNumber": this.matchNumber,
                     "TeamNumber": this.teamNumber,

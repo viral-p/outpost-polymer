@@ -12,6 +12,7 @@
         <link rel="import" href="bower_components/core-menu/core-menu.html">
         <link rel="import" href="bower_components/paper-item/paper-item.html">
         <link rel="import" href="bower_components/core-pages/core-pages.html">
+        <link rel="import" href="bower_components/paper-dialog/paper-dialog.html">
         <link rel="import" href="number-counter.html">
         <link rel="import" href="outpost-engage.html">
         <link rel="import" href="outpost-header.html">
@@ -66,23 +67,34 @@
                                 <core-icon id="decreaseButton" icon="exit-to-app"></core-icon>
                                 Logout
                             </paper-item>
+                            <paper-item on-tap="{{emend}}">
+                                <core-icon id="replayButton" icon="reply"></core-icon>
+                                Replay Match
+                            </paper-item>
                         </core-menu>
                     </core-header-panel>
 
-                        <outpost-header tool selected="{{mode}}"></outpost-header>
+                    <outpost-header tool selected="{{mode}}"></outpost-header>
 
-                        <core-pages selected="{{mode}}" main>
-                            <div>
-                                <auto-form></auto-form>
-                            </div>
-                            <div>
-                                <tele-op></tele-op>
-                            </div>
-                            <div>
-                                <misc-input-panel></misc-input-panel>
-                            </div>
-                        </core-pages>
+                    <core-pages selected="{{mode}}" main>
+                        <div>
+                            <auto-form></auto-form>
+                        </div>
+                        <div>
+                            <tele-op></tele-op>
+                        </div>
+                        <div>
+                            <misc-input-panel></misc-input-panel>
+                        </div>
+                    </core-pages>
                 </core-scaffold>
+                <paper-dialog style="height: 400px; width: 300px;"id="replayDialog" backdrop autoCloseDisabled heading="Select Match to Replay" closeSelector="#close">
+                    <paper-input-decorator id="replayMatch-decorator" label="Match ###" floatingLabel>
+                        <input id="replayMatch" type="tel">
+                    </paper-input-decorator>
+                    <paper-button raised on-click="{{prepReplay}}">Submit</paper-button>
+                    <core-icon-button icon="close" style="position: absolute; top: 0px; right: 0px; border: 1px solid; color: red" id="close"></core-icon-button>
+                </paper-dialog>
             </template>
         </template>
         <script>
@@ -96,7 +108,20 @@
                 window.sessionStorage.removeItem('instanceId');
                 extBind.gate = false;
             };
-
+            extBind.emend = function()
+            {
+                document.getElementById('replayDialog').open();
+            };
+            extBind.prepReplay = function()
+            {
+                document.querySelector('core-overlay-layer /deep/ #replayDialog').close();
+                document.querySelector('html /deep/ core-scaffold').closeDrawer();
+                var ajax = document.querySelector('outpost-header /deep/ #attain');
+                var replayNumber = document.querySelector('core-overlay-layer /deep/ input');
+                ajax.url = "rest/match/" + replayNumber.value;
+                window.sessionStorage.setItem('replay', replayNumber.value);
+                extBind.mode = 0;
+            };
             document.addEventListener("engage", function(evt)
             {
                 if(window.sessionStorage.getItem('instanceId').search(/blue/i) > -1)
