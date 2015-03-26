@@ -3,42 +3,41 @@
 <link rel="import" href="bower_components/core-ajax/core-ajax.html">
 
 <polymer-element name="outpost-header" attributes="selected">
-    <template>
-        <style>
-            .formHeaderMedium
-            {
-                font-size: 20px;
-            }
-            .formHeaderSmall
-            {
-                font-size: 16px;
-            }
-            #matchTabs
-            {
-                font-size: 22px;
-            }
-            #matchTabs
-            {
-                width: 55%;
-            }
-        </style>
-        
-        <core-ajax id="attain"
-            auto
-            url="/{{survey}}"
-            handleAs="json"
-            headers='{"Content-Type": "application/json"}'
-            on-core-response="{{operational}}">
-        </core-ajax>
-        
-        <div horizontal layout center>
-            <paper-tabs id="matchTabs" selected="{{selected}}">
-                <paper-tab>Auto</paper-tab>
-                <paper-tab>Tele</paper-tab>
-                <paper-tab>Misc</paper-tab>
-            </paper-tabs>
-            
-            <div>
+<template>
+    <style>
+        .formHeaderMedium {
+            font-size: 20px;
+        }
+
+        .formHeaderSmall {
+            font-size: 16px;
+        }
+
+        #matchTabs {
+            font-size: 22px;
+        }
+
+        #matchTabs {
+            width: 55%;
+        }
+    </style>
+
+    <core-ajax id="attain"
+               auto
+               url="/{{survey}}"
+               handleAs="json"
+               headers='{"Content-Type": "application/json"}'
+               on-core-response="{{operational}}">
+    </core-ajax>
+
+    <div horizontal layout center>
+        <paper-tabs id="matchTabs" selected="{{selected}}">
+            <paper-tab>Auto</paper-tab>
+            <paper-tab>Tele</paper-tab>
+            <paper-tab>Misc</paper-tab>
+        </paper-tabs>
+
+        <div>
                 <span class="formHeaderSmall">
                     <bs-col xs="6">{{alliance}} {{allies[0]}}, {{allies[1]}}</bs-col>
                     <bs-col xs="6">{{opponent}} {{opposition[0]}}, {{opposition[1]}}, {{opposition[2]}}</bs-col>
@@ -47,171 +46,165 @@
                     <bs-col xs="6">Match: <u style="color: #64FFDA;">{{matchNumber}}</u></bs-col>
                     <bs-col xs="6">Team: <u style="color: #64FFDA;">{{teamNumber}}</u></bs-col>
                 </span>
-            </div>
         </div>
-    </template>
-    
-    <script>
-        document.addEventListener('submit-form', function(evt, detail)
-                                  {
-            var miscForm = evt.detail.misc;
-            var autoForm = evt.detail.auto;
-            var teleopForm = evt.detail.teleop;
-            var header = evt.detail.header;
-            var ajax = document.querySelector('outpost-header::shadow core-ajax');
-            var fn = window.sessionStorage.getItem('formNumber');
-            ajax.method = "POST";
-            var form = {
-                          "FormNumber": fn,
-                          "MatchNumber": header.MatchNumber,
-                          "TeamNumber": header.TeamNumber,
-                          "Station": header.Station,
-                          "Penalties": miscForm.Penalties,
-                          "AllianceScore": miscForm.AllianceScore,
-                          "OpponentScore": miscForm.OpponentScore,
-                          "Comments": miscForm.Comments,
-                          "AutoMobility": autoForm.AutoMobility,
-                          "AutoBinsMoved": autoForm.AutoBinsMoved,
-                          "AutoBinsScored": autoForm.AutoBinsScored,
-                          "AutoTotesMoved": autoForm.AutoTotesMoved,
-                          "AutoTotesStacked": autoForm.AutoTotesStacked,
-                          "AutoTotesScored": autoForm.AutoTotesScored,
-                          "LandfillTotesAcquired": autoForm.LandfillTotesAcquired,
-                          "StepTotesAcquired": autoForm.StepTotesAcquired,
-                          "StepBinsAcquired": autoForm.StepBinsAcquired,
-                          "TotesScored": [
-                            teleopForm.TotesScored[0],
-                            teleopForm.TotesScored[1],
-                            teleopForm.TotesScored[2],
-                            teleopForm.TotesScored[3],
-                            teleopForm.TotesScored[4],
-                            teleopForm.TotesScored[5]
-                          ],
-                          "BinsScored": [
-                            teleopForm.BinsScored[0],
-                            teleopForm.BinsScored[1],
-                            teleopForm.BinsScored[2],
-                            teleopForm.BinsScored[3],
-                            teleopForm.BinsScored[4],
-                            teleopForm.BinsScored[5]
-                          ],
-                          "LitterProcessed": teleopForm.LitterProcessed,
-                          "LitterCapped": teleopForm.LitterCapped,
-                          "TotesAcquiredLandfill": teleopForm.TotesAcquiredLandfill,
-                          "TotesAcquiredHumanLoad": teleopForm.TotesAcquiredHumanLoad,
-                          "TotesAcquiredStep": teleopForm.TotesAcquiredStep,
-                          "BinsAcquiredStep": teleopForm.BinsAcquiredStep,
-                          "BinsAcquiredZone": teleopForm.BinsAcquiredZone,
-                          "UpsideDownTotesAcquired": teleopForm.UpsideDownTotesAcquired,
-                          "NonUprightBinsAcquired": teleopForm.NonUprightBinsAcquired
-                        };
-            ajax.body = JSON.stringify(form);
-            ajax.url = "rest/form/" + window.sessionStorage.getItem('formNumber');
-        });
-        Polymer({
-            allies: [],
-            opposition: [],
-            test: document.querySelector('misc-input-panel'),
-            operational: function()
-            {
-                if(this.survey.search(/last/) > -1)
-                {
-                    if(this.$.attain.response != null)
-                    {
-                        this.matchNumber = parseInt(this.$.attain.response.MatchNumber) + 1;
-                    }
-                    else
-                    {
-                        this.matchNumber = 1;
-                    }
-                    this.survey = 'rest/match/'+this.matchNumber;
-                }
-                else
-                {
-                    if(window.sessionStorage.getItem('replay'))
-                    {
-                        this.matchNumber = window.sessionStorage.getItem('replay');
-                        window.sessionStorage.removeItem('replay');
-                    }
-                    this.instance = window.sessionStorage.getItem('instanceId');
-                    this.teamNumber = parseInt(this.$.attain.response[this.instance]);
-                    this.scanForAllies(this.instance.length - 1);
-                    this.scanForOpposition(this.instance.length - 1);
-                    this.createRecord();
-                }
-            },
-            createRecord: function()
-            {
-                window.sessionStorage.removeItem('autoForm');
-                window.sessionStorage.removeItem('teleopForm');
-                window.sessionStorage.removeItem('miscForm');
-                var pages = document.querySelector('html /deep/ core-pages');
-                pages.removeChild(pages.children[0]);
-                pages.removeChild(pages.children[0]);
-                pages.removeChild(pages.children[0]);
-                var auto = document.createElement('auto-form');
-                var teleop = document.createElement('tele-op');
-                var misc = document.createElement('misc-input-panel');
-                pages.appendChild(auto);
-                pages.appendChild(teleop);
-                pages.appendChild(misc);
+    </div>
+</template>
 
-                this.header = {
-                    "MatchNumber": this.matchNumber,
-                    "TeamNumber": this.teamNumber,
-                    "Station": this.station
-                };
-                
-                window.sessionStorage.setItem("headerData", JSON.stringify(this.header));
-                window.sessionStorage.setItem("formNumber", this.formNumber);
-            },
-            scanForAllies: function(stnIndex)
+<script>
+    document.addEventListener('submit-form', function (evt, detail) {
+        var miscForm = evt.detail.misc;
+        var autoForm = evt.detail.auto;
+        var teleopForm = evt.detail.teleop;
+        var header = evt.detail.header;
+        var ajax = document.querySelector('outpost-header::shadow core-ajax');
+        var fn = window.sessionStorage.getItem('formNumber');
+        ajax.method = "POST";
+        var form = {
+            "FormNumber": fn,
+            "MatchNumber": header.MatchNumber,
+            "TeamNumber": header.TeamNumber,
+            "Station": header.Station,
+            "Penalties": miscForm.Penalties,
+            "AllianceScore": miscForm.AllianceScore,
+            "OpponentScore": miscForm.OpponentScore,
+            "Comments": miscForm.Comments,
+            "AutoMobility": autoForm.AutoMobility,
+            "AutoBinsMoved": autoForm.AutoBinsMoved,
+            "AutoBinsScored": autoForm.AutoBinsScored,
+            "AutoTotesMoved": autoForm.AutoTotesMoved,
+            "AutoTotesStacked": autoForm.AutoTotesStacked,
+            "AutoTotesScored": autoForm.AutoTotesScored,
+            "LandfillTotesAcquired": autoForm.LandfillTotesAcquired,
+            "StepTotesAcquired": autoForm.StepTotesAcquired,
+            "StepBinsAcquired": autoForm.StepBinsAcquired,
+            "TotesScored": [
+                teleopForm.TotesScored[0],
+                teleopForm.TotesScored[1],
+                teleopForm.TotesScored[2],
+                teleopForm.TotesScored[3],
+                teleopForm.TotesScored[4],
+                teleopForm.TotesScored[5]
+            ],
+            "BinsScored": [
+                teleopForm.BinsScored[0],
+                teleopForm.BinsScored[1],
+                teleopForm.BinsScored[2],
+                teleopForm.BinsScored[3],
+                teleopForm.BinsScored[4],
+                teleopForm.BinsScored[5]
+            ],
+            "LitterProcessed": teleopForm.LitterProcessed,
+            "LitterCapped": teleopForm.LitterCapped,
+            "TotesAcquiredLandfill": teleopForm.TotesAcquiredLandfill,
+            "TotesAcquiredHumanLoad": teleopForm.TotesAcquiredHumanLoad,
+            "TotesAcquiredStep": teleopForm.TotesAcquiredStep,
+            "BinsAcquiredStep": teleopForm.BinsAcquiredStep,
+            "BinsAcquiredZone": teleopForm.BinsAcquiredZone,
+            "UpsideDownTotesAcquired": teleopForm.UpsideDownTotesAcquired,
+            "NonUprightBinsAcquired": teleopForm.NonUprightBinsAcquired
+        };
+        ajax.body = JSON.stringify(form);
+        ajax.url = "rest/form/" + window.sessionStorage.getItem('formNumber');
+    });
+    Polymer({
+        allies: [],
+        opposition: [],
+        test: document.querySelector('misc-input-panel'),
+        operational: function () {
+            if (this.survey.search(/last/) > -1) {
+                if (this.$.attain.response != null) {
+                    this.matchNumber = parseInt(this.$.attain.response.MatchNumber) + 1;
+                }
+                else {
+                    this.matchNumber = 1;
+                }
+                this.survey = 'rest/match/' + this.matchNumber;
+            }
+            else if (this.survey.search(/form/) > -1)
             {
-                var allies = [0, 0, 0];
-                var i = 0;
-                allies[this.instance[stnIndex] - 1] = 1;
-                for(ally in allies)
+                if(this.$.attain.response == "Successfully Added!")
                 {
-                    if(!allies[ally])
-                    {
-                        ally++;
-                        this.allies[i++] = this.$.attain.response[this.instance.replace(/[0-9]/, ally)];
-                    }
-                }
-            },
-            scanForOpposition: function(stnIndex)
-            {
-                if(this.instance.search(/red/i) > -1)
-                {
-                    this.opposition[0] = this.$.attain.response['Blue1'];
-                    this.opposition[1] = this.$.attain.response['Blue2'];
-                    this.opposition[2] = this.$.attain.response['Blue3'];
-                    this.formNumber = (this.matchNumber - 1) * 6 + parseInt(this.instance[stnIndex]);
-                    this.opponent = "Blue:";
-                    this.alliance = "Red:";
-                }
-                else
-                {
-                    this.opposition[0] = this.$.attain.response['Red1'];
-                    this.opposition[1] = this.$.attain.response['Red2'];
-                    this.opposition[2] = this.$.attain.response['Red3'];
-                    this.formNumber = (this.matchNumber - 1) * 6 + parseInt(this.instance[stnIndex]) + 3;
-                    this.opponent = "Red:";
-                    this.alliance = "Blue:";
-                }
-            },
-            ready: function()
-            {
-                if(!window.sessionStorage.getItem('instanceId'))
-                {
-                    window.location.assign("outpost.html");
-                }
-                else
-                {
-                    this.station = window.sessionStorage.getItem('instanceId');
-                    this.survey = "rest/last/"+this.station;
+                    this.selected = 0;
+                    this.matchNumber++;
+                    this.$.attain.method = "GET";
+                    this.survey = 'rest/match/' + this.matchNumber;
                 }
             }
-        });
-    </script>
+            else {
+                if (window.sessionStorage.getItem('replay')) {
+                    this.matchNumber = window.sessionStorage.getItem('replay');
+                    window.sessionStorage.removeItem('replay');
+                }
+                this.instance = window.sessionStorage.getItem('instanceId');
+                this.teamNumber = parseInt(this.$.attain.response[this.instance]);
+                this.scanForAllies(this.instance.length - 1);
+                this.scanForOpposition(this.instance.length - 1);
+                this.createRecord();
+            }
+
+        },
+        createRecord: function () {
+            window.sessionStorage.removeItem('autoForm');
+            window.sessionStorage.removeItem('teleopForm');
+            window.sessionStorage.removeItem('miscForm');
+            var pages = document.querySelector('html /deep/ core-pages');
+            pages.removeChild(pages.children[0]);
+            pages.removeChild(pages.children[0]);
+            pages.removeChild(pages.children[0]);
+            var auto = document.createElement('auto-form');
+            var teleop = document.createElement('tele-op');
+            var misc = document.createElement('misc-input-panel');
+            pages.appendChild(auto);
+            pages.appendChild(teleop);
+            pages.appendChild(misc);
+
+            this.header = {
+                "MatchNumber": this.matchNumber,
+                "TeamNumber": this.teamNumber,
+                "Station": this.station
+            };
+
+            window.sessionStorage.setItem("headerData", JSON.stringify(this.header));
+            window.sessionStorage.setItem("formNumber", this.formNumber);
+        },
+        scanForAllies: function (stnIndex) {
+            var allies = [0, 0, 0];
+            var i = 0;
+            allies[this.instance[stnIndex] - 1] = 1;
+            for (ally in allies) {
+                if (!allies[ally]) {
+                    ally++;
+                    this.allies[i++] = this.$.attain.response[this.instance.replace(/[0-9]/, ally)];
+                }
+            }
+        },
+        scanForOpposition: function (stnIndex) {
+            if (this.instance.search(/red/i) > -1) {
+                this.opposition[0] = this.$.attain.response['Blue1'];
+                this.opposition[1] = this.$.attain.response['Blue2'];
+                this.opposition[2] = this.$.attain.response['Blue3'];
+                this.formNumber = (this.matchNumber - 1) * 6 + parseInt(this.instance[stnIndex]);
+                this.opponent = "Blue:";
+                this.alliance = "Red:";
+            }
+            else {
+                this.opposition[0] = this.$.attain.response['Red1'];
+                this.opposition[1] = this.$.attain.response['Red2'];
+                this.opposition[2] = this.$.attain.response['Red3'];
+                this.formNumber = (this.matchNumber - 1) * 6 + parseInt(this.instance[stnIndex]) + 3;
+                this.opponent = "Red:";
+                this.alliance = "Blue:";
+            }
+        },
+        ready: function () {
+            if (!window.sessionStorage.getItem('instanceId')) {
+                window.location.assign("outpost.html");
+            }
+            else {
+                this.station = window.sessionStorage.getItem('instanceId');
+                this.survey = "rest/last/" + this.station;
+            }
+        }
+    });
+</script>
 </polymer-element>
