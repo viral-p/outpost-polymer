@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48faec9b-143e-4b5b-b69e-8d2dbae95679" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/outpost-header.html" afterPath="$PROJECT_DIR$/outpost-header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/misc-input-panel.html" afterPath="$PROJECT_DIR$/misc-input-panel.html" />
     </list>
     <ignored path="finished.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,14 +25,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="outpost-header.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="outpost-header.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/outpost-header.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2918919" vertical-offset="3240" max-vertical-offset="5805">
-              <caret line="126" column="38" selection-start-line="126" selection-start-column="38" selection-end-line="126" selection-end-column="38" />
+            <state vertical-scroll-proportion="-8.4375" vertical-offset="1620" max-vertical-offset="5805">
+              <caret line="70" column="10" selection-start-line="70" selection-start-column="10" selection-end-line="70" selection-end-column="10" />
               <folding>
                 <element signature="n#style#0;n#u#0;n#bs-col#0;n#span#1;n#div#0;n#div#0;n#template#0;n#polymer-element#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#u#0;n#bs-col#1;n#span#1;n#div#0;n#div#0;n#template#0;n#polymer-element#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="misc-input-panel.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/misc-input-panel.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.16564417" vertical-offset="945" max-vertical-offset="2430">
+              <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+              <folding>
+                <element signature="n#style#0;n#core-icon-button#0;n#paper-dialog#0;n#template#0;n#polymer-element#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#core-icon-button#1;n#paper-dialog#0;n#template#0;n#polymer-element#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,8 +86,8 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.28125" vertical-offset="1605" max-vertical-offset="3807">
-              <caret line="76" column="57" selection-start-line="76" selection-start-column="53" selection-end-line="76" selection-end-column="57" />
+            <state vertical-scroll-proportion="-1.6875" vertical-offset="1782" max-vertical-offset="3807">
+              <caret line="70" column="22" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
               <folding>
                 <element signature="tag#template#0;tag#template#0;tag#body#0;tag#html#0" expanded="false" />
                 <element signature="n#style#0;n#paper-dialog#0;n#template#1;n#template#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -103,11 +114,11 @@
         <option value="$PROJECT_DIR$/strategy-screen.html" />
         <option value="$PROJECT_DIR$/outpost-engage.html" />
         <option value="$PROJECT_DIR$/auto-form.html" />
-        <option value="$PROJECT_DIR$/misc-input-panel.html" />
         <option value="$PROJECT_DIR$/tele-op.html" />
         <option value="$PROJECT_DIR$/number-counter.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/outpost-header.html" />
+        <option value="$PROJECT_DIR$/misc-input-panel.html" />
       </list>
     </option>
   </component>
@@ -429,31 +440,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/misc-input-panel.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55135137" vertical-offset="1314" max-vertical-offset="1998">
-          <caret line="60" column="50" selection-start-line="60" selection-start-column="50" selection-end-line="60" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/auto-form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.90625" vertical-offset="3576" max-vertical-offset="4131">
           <caret line="143" column="16" selection-start-line="143" selection-start-column="16" selection-end-line="143" selection-end-column="16" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.28125" vertical-offset="1605" max-vertical-offset="3807">
-          <caret line="76" column="57" selection-start-line="76" selection-start-column="53" selection-end-line="76" selection-end-column="57" />
-          <folding>
-            <element signature="tag#template#0;tag#template#0;tag#body#0;tag#html#0" expanded="false" />
-            <element signature="n#style#0;n#paper-dialog#0;n#template#1;n#template#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#core-icon-button#0;n#paper-dialog#0;n#template#1;n#template#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -467,13 +458,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.6875" vertical-offset="1782" max-vertical-offset="3807">
+          <caret line="70" column="22" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
+          <folding>
+            <element signature="tag#template#0;tag#template#0;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="n#style#0;n#paper-dialog#0;n#template#1;n#template#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#core-icon-button#0;n#paper-dialog#0;n#template#1;n#template#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/outpost-header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2918919" vertical-offset="3240" max-vertical-offset="5805">
-          <caret line="126" column="38" selection-start-line="126" selection-start-column="38" selection-end-line="126" selection-end-column="38" />
+        <state vertical-scroll-proportion="-8.4375" vertical-offset="1620" max-vertical-offset="5805">
+          <caret line="70" column="10" selection-start-line="70" selection-start-column="10" selection-end-line="70" selection-end-column="10" />
           <folding>
             <element signature="n#style#0;n#u#0;n#bs-col#0;n#span#1;n#div#0;n#div#0;n#template#0;n#polymer-element#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#u#0;n#bs-col#1;n#span#1;n#div#0;n#div#0;n#template#0;n#polymer-element#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/misc-input-panel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16564417" vertical-offset="945" max-vertical-offset="2430">
+          <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+          <folding>
+            <element signature="n#style#0;n#core-icon-button#0;n#paper-dialog#0;n#template#0;n#polymer-element#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#core-icon-button#1;n#paper-dialog#0;n#template#0;n#polymer-element#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
