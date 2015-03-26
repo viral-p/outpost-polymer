@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48faec9b-143e-4b5b-b69e-8d2dbae95679" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/outpost-header.html" afterPath="$PROJECT_DIR$/outpost-header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/auto-form.html" afterPath="$PROJECT_DIR$/auto-form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/misc-input-panel.html" afterPath="$PROJECT_DIR$/misc-input-panel.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tele-op.html" afterPath="$PROJECT_DIR$/tele-op.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="finished.iws" />
@@ -27,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="outpost-header.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="outpost-header.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/outpost-header.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12432432" vertical-offset="3171" max-vertical-offset="5535">
-              <caret line="120" column="45" selection-start-line="120" selection-start-column="45" selection-end-line="120" selection-end-column="45" />
+            <state vertical-scroll-proportion="-2.15625" vertical-offset="3171" max-vertical-offset="5535">
+              <caret line="120" column="54" selection-start-line="120" selection-start-column="54" selection-end-line="120" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -50,9 +51,43 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-38.4375" vertical-offset="1632" max-vertical-offset="3159">
-              <caret line="106" column="33" selection-start-line="106" selection-start-column="33" selection-end-line="106" selection-end-column="33" />
+            <state vertical-scroll-proportion="-4.6875" vertical-offset="1308" max-vertical-offset="3159">
+              <caret line="54" column="37" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="auto-form.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/auto-form.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-120.65625" vertical-offset="0" max-vertical-offset="4131">
+              <caret line="143" column="86" selection-start-line="143" selection-start-column="86" selection-end-line="143" selection-end-column="86" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tele-op.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tele-op.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.4375" vertical-offset="1944" max-vertical-offset="3645">
+              <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
+              <folding>
+                <element signature="n#style#0;n#bs-col#0;n#bs-row#4;n#bs-container#0;n#template#0;n#polymer-element#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="misc-input-panel.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/misc-input-panel.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.72727275" vertical-offset="261" max-vertical-offset="1998">
+              <caret line="31" column="21" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
+              <folding>
+                <element signature="n#style#0;n#bs-col#0;n#bs-row#2;n#bs-container#0;n#template#0;n#polymer-element#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,6 +110,9 @@
         <option value="$PROJECT_DIR$/outpost-engage.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/outpost-header.html" />
+        <option value="$PROJECT_DIR$/auto-form.html" />
+        <option value="$PROJECT_DIR$/tele-op.html" />
+        <option value="$PROJECT_DIR$/misc-input-panel.html" />
       </list>
     </option>
   </component>
@@ -246,7 +284,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988507" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2724138" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2724138" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24954683" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -327,13 +365,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tele-op.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5837838" vertical-offset="0" max-vertical-offset="3645">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/strategy.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1620">
@@ -377,14 +408,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/misc-input-panel.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11363637" vertical-offset="936" max-vertical-offset="1944">
-          <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/number-counter.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.52288735" vertical-offset="0" max-vertical-offset="1620">
@@ -400,19 +423,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/outpost-header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-38.4375" vertical-offset="1632" max-vertical-offset="3159">
-          <caret line="106" column="33" selection-start-line="106" selection-start-column="33" selection-end-line="106" selection-end-column="33" />
+        <state vertical-scroll-proportion="-2.15625" vertical-offset="3171" max-vertical-offset="5535">
+          <caret line="120" column="54" selection-start-line="120" selection-start-column="54" selection-end-line="120" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/outpost-header.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12432432" vertical-offset="3171" max-vertical-offset="5535">
-          <caret line="120" column="45" selection-start-line="120" selection-start-column="45" selection-end-line="120" selection-end-column="45" />
+        <state vertical-scroll-proportion="-4.6875" vertical-offset="1308" max-vertical-offset="3159">
+          <caret line="54" column="37" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/auto-form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-120.65625" vertical-offset="0" max-vertical-offset="4131">
+          <caret line="143" column="86" selection-start-line="143" selection-start-column="86" selection-end-line="143" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tele-op.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.4375" vertical-offset="1944" max-vertical-offset="3645">
+          <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
+          <folding>
+            <element signature="n#style#0;n#bs-col#0;n#bs-row#4;n#bs-container#0;n#template#0;n#polymer-element#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/misc-input-panel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.72727275" vertical-offset="261" max-vertical-offset="1998">
+          <caret line="31" column="21" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#bs-col#0;n#bs-row#2;n#bs-container#0;n#template#0;n#polymer-element#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
