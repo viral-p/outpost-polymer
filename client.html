@@ -1,0 +1,81 @@
+<html>
+    188 Blizzard I.C.E (Inquiry Contingent Experience)
+    <div id="response"></div>
+    
+    <button type="button" onclick="post()">Submit</button>
+    <script>
+        var xmlHttp = null;
+//
+//        xmlHttp = new XMLHttpRequest();
+//        xmlHttp.open( "GET", "/rest/team/188/1", false);
+//        xmlHttp.send( null );
+//        var res = JSON.parse(xmlHttp.response);
+//        var resStr = "";
+//        console.dir(res);
+//        for(var key in res)
+//        {
+//            if(res.hasOwnProperty(key))
+//            {
+//                document.getElementById('response').innerHTML += key + " => " + res[key] + "<br>";
+//            }
+//        }
+        var post = function()
+        {
+            var submit = new XMLHttpRequest();
+            var formData = {
+                              "FormNumber": 11,
+                              "MatchNumber": 1,
+                              "TeamNumber": 188,
+                              "LandfillManip": 0, // boolean use 0 or 1
+                              "HumanLoad": 1, // boolean use 0 or 1
+                              "Penalties": 5,
+                              "AllianceScore": 11,
+                              "OpponentScore": 36,
+                              "Comments": "Terrible Match, Robot got stuck.",
+                              "AutoMobility": 0, // boolean use 0 or 1
+                              "AutoBinsMoved": 1,
+                              "AutoBinsScored": 2,
+                              "AutoTotesMoved": 3,
+                              "AutoTotesStacked": 4,
+                              "AutoTotesScored": 5,
+                              "TotesAcquired": [
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                ""
+                              ],
+                              "TotesPlaced": [
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                ""
+                              ],
+                              "BinsAcquired": [
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                ""
+                              ],
+                              "BinsPlaced": [
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                ""
+                              ],
+                              "LitterProcessed": "",
+                              "LitterCapped": ""
+                            };
+            submit.open("POST", "/rest/form", false);
+            submit.setRequestHeader("Content-Type", "application/json");
+            submit.send(JSON.stringify(formData));
+        }
+    </script>
+</html>

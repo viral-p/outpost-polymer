@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <form>
+        <input id="teamId" type="text" name="teamId">
+        <input type="file" name="photo" accept="image/*" capture>
+    </form>
+        
+    <div id="response"></div>
+    
+    <script type="text/javascript">
+        var input = document.querySelector('input[type=file]');
+
+        input.onchange = function ()
+        {
+            var file = input.files[0];
+
+            upload(file);
+        };
+
+        function upload(file)
+        {
+            var form = new FormData(), xhr = new XMLHttpRequest(), id = document.getElementById('teamId');
+            
+            form.append('photo', file);
+            form.append('team', id.value+".jpg");
+            xhr.open('post', '/rest/photo', false);
+            xhr.send(form);
+            
+            var res = xhr.response;
+            document.getElementById('response').innerHTML = res;
+        }
+    </script>
+</html>

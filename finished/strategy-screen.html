@@ -1,0 +1,56 @@
+<link rel="import" href="json-table.html">
+<link rel="import" href="bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+
+<polymer-element name="strategy-screen" attributes = "tableData">
+	<template>
+		<paper-button id="Teams" on-click="{{getTeamList}}">Team List</paper-button>
+		<paper-button id="Matches" on-click="{{getMatchSchedule}}">Match Schedule</paper-button>
+		<input id="numberInput">
+		<paper-button id="Team" on-click="{{getTeam}}">Find Team</paper-button>
+		<paper-button id="Match" on-click="{{getMatch}}">Find Match</paper-button>
+		<json-table _json= "{{tableData}}" id="tableView"></json-table>
+		<core-ajax id="ajaxRequest"
+				   auto
+				   method="GET"
+	  		url="../../rest/matches"
+	  		on-core-response="{{response}}"
+		    headers='{"Content-Type": "application/json"}'
+	  		handleAs="json">
+		</core-ajax>
+        
+	</template>
+	
+	<script>
+		Polymer({
+			tableData: [],
+			tableDataChanged: function(oldValue, newValue){
+				this.$.tableView._json = newValue;
+			},
+			getMatchSchedule: function(){
+				this.$.ajaxRequest.url = "../../rest/matches";
+			},
+			getTeamList: function(){
+				this.$.ajaxRequest.url = "../../rest/teams";
+			},
+			getTeam: function(){
+				var input = this.$.numberInput.value;
+				this.$.ajaxRequest.url = "../../rest/team/" + input;
+			},
+			getMatch: function(){
+				var input = this.$.numberInput.value;
+				this.$.ajaxRequest.url = "../../rest/match/" + input;
+			},
+			response: function(){
+                if(Array.isArray(this.$.ajaxRequest.response))
+                {
+				    this.tableData = this.$.ajaxRequest.response;
+                }
+                else
+                {
+                    this.tableData = [this.$.ajaxRequest.response];
+                }
+			}
+		});
+	</script>
+</polymer-element>

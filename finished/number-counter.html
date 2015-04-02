@@ -1,0 +1,55 @@
+<link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
+
+<polymer-element name="number-counter" attributes = "values sumLimit valueLimits">
+	<template>
+		<strong style="text-align:centre">{{id}}</strong>
+        <template repeat="{{value, i in values}}">
+            <div>
+				<core-icon-button
+				id="decreaseButton"
+				icon="expand-more"
+				on-tap="{{decrease}}">
+				</core-icon-button>
+				<label id="valueDisplay"> {{value}} </label>
+				<core-icon-button
+				id="increaseButton"
+				icon="expand-less"
+				on-tap="{{increase}}">
+				</core-icon-button>
+            </div>
+	   </template>
+    </template>
+	
+	<script>
+		Polymer({
+			values: [0, 0, 0, 0, 0, 0],
+            valueLimits: [50, 50, 50, 50, 50, 50],
+            sumLimit: 99,
+            sum: 0,
+            valuesChanged: function(oldVal, newVal){
+                this.sum = 0;
+                for (v in this.values){
+                    this.sum += this.values[v];
+                }
+            },
+			decrease: function (event, detail, sender) {
+				var i = event.target.templateInstance.model.i;
+				if(this.values[i] != 0){
+					this.values[i] = this.values[i] - 1;
+				}
+			},
+			increase: function (event, detail, sender) {
+				var i = event.target.templateInstance.model.i;
+                
+                if (this.sum + 1 <= this.sumLimit && this.values[i] + 1 <= this.valueLimits[i]){
+				    this.values[i] = this.values[i] + 1;
+                }
+			},
+			reset: function(event, detail, sender) {
+				for(i in this.values){
+					this.values[i] = 0;
+				}
+			}
+		});
+	</script>
+</polymer-element>
