@@ -1,0 +1,56 @@
+<link rel="import" href="../finished/components/polymer/polymer.html">
+<link rel="import" href="../finished/post-service/post-service.html">
+<link rel="import" href="post-card.html">
+
+<polymer-element name="post-list" attributes="show">
+  <template>
+    <style>
+    :host {
+      display: block;
+      width: 100%;
+    }
+    post-card {
+      margin-bottom: 30px;
+    }
+    </style>
+
+    <post-service id="service" posts="{{posts}}"></post-service>
+    
+    <div layout vertical center>
+      <template repeat="{{post in posts}}">
+        <post-card
+          favorite="{{post.favorite}}"
+          on-favorite-tap="{{handleFavorite}}"
+          hidden?="{{show == 'favorites' && !post.favorite}}">
+          <img src="{{post.avatar}}" width="70" height="70">
+          <h2>{{post.username}}</h2>
+          <p>{{post.text}}</p>
+        </post-card>
+          <core-icon-button icon="star" on-click="{{putJSON}}" layout vertical center></core-icon-button>
+          <core-ajax id="ajax2"
+      url="/api/posts.json"
+      on-core-response="{{getJSON}}"
+      handleAs="json">
+    </core-ajax>
+      </template>
+    </div>
+  </template>
+
+  <script>
+  Polymer({
+    handleFavorite: function(event, detail, sender) {
+      var post = sender.templateInstance.model.post;
+      this.$.service.setFavorite(post.uid, post.favorite);
+    },
+    getJSON: function(event, detail, sender)
+      {
+          console.dir(detail.response);
+      },
+      putJSON: function(event, detail, sender)
+      {
+            this.posts.push({"username": "Parth"});
+          console.dir(this.posts);
+      }
+  });
+  </script>
+</polymer-element>

@@ -1,0 +1,85 @@
+<link rel="import" href="bower_components/paper-input/paper-input-decorator.html">
+<link rel="import" href="bower_components/paper-input/paper-autogrow-textarea.html">
+
+<polymer-element name="misc-input-panel">
+    <template>
+        <bs-container>
+            <bs-row>
+                <bs-col sm=2>
+                    <paper-input-decorator id="penalty-decorator" label="Penalties" floatingLabel>
+                        <input id="penalty" type="tel">
+                    </paper-input-decorator>
+                </bs-col>
+                <bs-col sm=2>
+                    <paper-input-decorator id="alliance-decorator" label="Alliance Score" floatingLabel>
+                        <input id="alliance" type="tel">
+                    </paper-input-decorator>
+                </bs-col>
+                <bs-col sm=2>
+                    <paper-input-decorator id="opponent-decorator" label="Opponent's Score" floatingLabel>
+                        <input id="opponent" type="tel">
+                    </paper-input-decorator>
+                </bs-col>
+            </bs-row>
+            <bs-row>
+                <bs-col sm=5>
+                    <paper-input-decorator id="paper-comments" label="Comments" floatingLabel>
+                        <paper-autogrow-textarea>
+                            <textarea id="comments" placeholder aria-label="Comments"></textarea>
+                        </paper-autogrow-textarea>
+                    </paper-input-decorator>
+                </bs-col>
+            </bs-row>
+            <bs-row>
+                <bs-col xs="3" style="padding-top: 20px; padding-bottom: 20px;">
+                    <paper-button raised on-click="{{confirm}}">Submit that Data Doe</paper-button>
+                </bs-col>
+            </bs-row>
+        </bs-container>
+        <paper-dialog style="height: 140px;" id="confirmation" backdrop autoCloseDisabled heading="Are you sure?" closeSelector="#decline">
+            <core-icon-button icon="close"
+                              style="position: absolute; bottom: 10px; right: 10px; border: 1px solid; color: red"
+                              id="decline"></core-icon-button>
+            <core-icon-button on-tap="{{accept}}" icon="check"
+                              style="position: absolute; bottom: 10px; left: 10px; border: 1px solid; color: green"
+                              id="accept"></core-icon-button>
+        </paper-dialog>
+    </template>
+    <script>
+        Polymer({
+            miscForm: {
+                AllianceScore: 0,
+                OpponentScore: 0,
+                Penalties: 0,
+                Comments: ""
+            },
+            accept: function () {
+                this.$.confirmation.close();
+                this.submitData();
+            },
+            confirm: function () {
+                this.$.confirmation.open();
+            },
+            submitForm: function (misc, tele, auto, header) {
+                this.fire('submit-form', {misc: misc, teleop: tele, auto: auto, header: header});
+            },
+            submitData: function () {
+                this.miscForm["AllianceScore"] = this.$.alliance.value.search(/[0-9]+/) > -1 ? parseInt(this.$.alliance.value) : 0;
+                this.miscForm["OpponentScore"] = this.$.opponent.value.search(/[0-9]+/) > -1 ? parseInt(this.$.opponent.value) : 0;
+                this.miscForm["Penalties"] = this.$.penalty.value.search(/[0-9]+/) > -1 ? parseInt(this.$.penalty.value) : 0;
+                this.miscForm["Comments"] = this.$.comments.value;
+
+                this.$.alliance.value = "";
+                this.$.opponent.value = "";
+                this.$.penalty.value = "";
+                this.$.comments.value = "";
+
+                window.sessionStorage.setItem("miscForm", JSON.stringify(this.miscForm));
+                var teleopForm = JSON.parse(window.sessionStorage.getItem('teleopForm'));
+                var autoForm = JSON.parse(window.sessionStorage.getItem('autoForm'));
+                var header = JSON.parse(window.sessionStorage.getItem('headerData'));
+                this.submitForm(this.miscForm, teleopForm, autoForm, header);
+            }
+        });
+    </script>
+</polymer-element>
