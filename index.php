@@ -5,7 +5,7 @@
 
     $slim = new \Slim\Slim();
     $slim->response->headers->set('Content-Type', 'application/json');
-    $data = openDatabase('team188_scout');
+    $data = openDatabase('scouttesting');
     
     #get match schedule
     $slim->get('/matches', function ()  use($data, $slim){
@@ -110,7 +110,6 @@
             echo $error;
         }
         
-        $file = $_FILES['photo'];
         printf('%s <img src="%s"/><br/>', $name, "/rest/robotPhotos/".$name);
 
         $data->close();

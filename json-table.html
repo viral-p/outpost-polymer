@@ -28,7 +28,10 @@
 				this.tableHeadings = Object.keys(this._json[0]);
 			},
 			_jsonChanged: function(oldValue, newValue){
-				this.tableHeadings = Object.keys(this._json[0]);
+                if(this._json && this._json[0])
+                {
+                    this.tableHeadings = Object.keys(this._json[0]);
+                }
 			},
 			ready: function(){
 				if(typeof this._json == "string"){
