@@ -43,8 +43,14 @@
 				this.$.ajaxRequest.url = "../../rest/match/" + input;
 			},
 			Response: function(){
-				this.tableData = this.$.ajaxRequest.response;
-			}
+                if(this.$.ajaxRequest.response)
+                {
+				    this.tableData = this.$.ajaxRequest.response;
+                }
+			},
+            ready: function(){
+                this.$.numberInput.value = 0;
+            }
 		});
 	</script>
 </polymer-element>
