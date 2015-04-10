@@ -5,7 +5,7 @@
 
     $slim = new \Slim\Slim();
     $slim->response->headers->set('Content-Type', 'application/json');
-    $data = openDatabase('scouttesting');
+    $data = openDatabase('team188_scout');
     
     #get match schedule
     $slim->get('/matches', function ()  use($data, $slim){
@@ -71,6 +71,18 @@
             $teamMatchRecord = json_encode($teamMatchRecord);
         }
         echo $teamMatchRecord;
+		$data->close();
+    });
+
+     //get match record for strat screen
+    $slim->get('/strat/:match', function ($match)  use($data, $slim){
+		$stratMatchRecord = getStratMatch($data, $match);
+        if(is_array($stratMatchRecord))
+        {
+            $slim->response->setStatus(500);
+            $stratMatchRecord = json_encode($stratMatchRecord);
+        }
+        echo $stratMatchRecord;
 		$data->close();
     });
 

@@ -9,75 +9,83 @@
 				margin: 0px;
 				padding: 0px;
 				padding-right: 55px;
-				border-right: 3px solid #64FFDA;
+				border-right: 3px solid;
 			}
+/*
 			h5{
 				margin: 0px;
 				padding: 0px;
 			}
+*/
+            .labels{
+				padding: 7px 7px 7px 7px;
+                height: 50px;
+			}
+         .labels > h5
+            {
+                margin: 0;
+                position: relative;
+                top: 34%;
+            }
 		</style>
 		<bs-container>
+<!--
 			<bs-row>
                 <bs-col xs="12"><h3>Tele Op</h3></bs-col>
             </bs-row>
-			<bs-row>
-				<bs-col xs="2">
-					<ul>
-                    <li><h5>Location</h5></li>
-					<li><h4>Landfill</h4></li>
-					<li><h4>Human Load</h4></li>
-					<li><h4>Step</h4></li>
-					<li><h4>Upside Down</h4></li>
-					</ul>
+-->
+			<bs-row style = "border-bottom: 3px solid #64FFDA">
+				<bs-col xs="2" style="padding-right: 0;">
+					<div class="labels"><h5>Landfill</h5></div>
+					<div class="labels"><h5>Human Load</h5></div>
+					<div class="labels"><h5>Step</h5></div>
+					<div class="labels"><h5>Upside Down</h5></div>
 				</bs-col>
-				<bs-col xs="3">
+				<bs-col xs="4" style ="border-right: 3px solid #64FFDA">
                     <number-counter id = "totesAcquired" values = [0,0,0,0] valueLimits = [28,33,12,100]></number-counter>
                 </bs-col>
 				<bs-col xs="2">
-					<ul>
-                    <li><h5>Location</h5></li>
-					<li><h4>Step</h4></li>
-                    <li><h4>Zone</h4></li>
-					<li><h4>Not Upright</h4></li>
-					</ul>
+					<div class="labels"><h5>Step</h5></div>
+                    <div class="labels"><h5>Ground</h5></div>
+					<div class="labels"><h5>Not Upright</h5></div>
 				</bs-col>
-				<bs-col xs="3">
+				<bs-col xs="4">
                     <number-counter id = "binsAcquired" values = [0,0,0] valueLimits = [4,7,7]></number-counter>
                 </bs-col>
 			</bs-row>
-            <br>
-			<bs-row>
-				<bs-col xs="2">
-					<ul>				
-					<li><h5>Level</h5></li>
-					<li><h4>6</h4></li>
-					<li><h4>5</h4></li>
-					<li><h4>4</h4></li>
-					<li><h4>3</h4></li>
-					<li><h4>2</h4></li>
-					<li><h4>1</h4></li>
-					</ul>
+			<bs-row style = "border-bottom: 3px solid #64FFDA">
+				<bs-col xs="2" style="padding-right: 0;">
+					<div class="labels"><h5>Level 6</h5></div>
+					<div class="labels"><h5>Level 5</h5></div>
+					<div class="labels"><h5>Level 4</h5></div>
+					<div class="labels"><h5>Level 3</h5></div>
+					<div class="labels"><h5>Level 2</h5></div>
+					<div class="labels"><h5>Level 1</h5></div>
 				</bs-col>
-				<bs-col xs="3"><number-counter id = "totesScored" values = [0,0,0,0,0,0]></number-counter></bs-col>
+				<bs-col xs="4" style ="border-right: 3px solid #64FFDA">
+                    <number-counter id = "totesScored" values = [0,0,0,0,0,0]></number-counter>
+                </bs-col>
 				<bs-col xs="2">
-					<ul>		
-					<li><h5>Level</h5></li>
-					<li><h4>6</h4></li>
-					<li><h4>5</h4></li>
-					<li><h4>4</h4></li>
-					<li><h4>3</h4></li>
-					<li><h4>2</h4></li>
-					<li><h4>1</h4></li>
-					</ul>
+                    <div class="labels"><h5>Level 6</h5></div>
+					<div class="labels"><h5>Level 5</h5></div>
+					<div class="labels"><h5>Level 4</h5></div>
+					<div class="labels"><h5>Level 3</h5></div>
+					<div class="labels"><h5>Level 2</h5></div>
+					<div class="labels"><h5>Level 1</h5></div>
 				</bs-col>
-				<bs-col xs="3"><number-counter id = "binsScored" values = [0,0,0,0,0,0] sumLimit = 7></number-counter></bs-col>
+				<bs-col xs="4">
+                    <number-counter id = "binsScored" values = [0,0,0,0,0,0] sumLimit = 7></number-counter>
+                </bs-col>
 			</bs-row>
 			<bs-row>
-				<bs-col xs="2">
+				<bs-col xs="2" style="padding-right: 0;">
+                    <div class="labels"><h5>Litter Processed</h5></div>
 				</bs-col>
-				<bs-col xs="3"><number-counter id = "litterProcessed" values = [0] sumLimit = 10></number-counter></bs-col>
-				<bs-col xs="2"></bs-col>
-				<bs-col xs="3"><number-counter id = "litterCapped" values = [0] sumLimit = 10></number-counter></bs-col>
+				<bs-col xs="4" style ="border-right: 3px solid #64FFDA">
+                    <number-counter id = "litterProcessed" values = [0] sumLimit = 10></number-counter>
+                </bs-col>
+				<bs-col xs="2"><div class="labels"><h5>Litter Capped</h5></div></bs-col>
+				<bs-col xs="4"><number-counter id = "litterCapped" values = [0] sumLimit = 10></number-counter></bs-col>
 			</bs-row>
             <bs-row>
                 <bs-col xs="3" style="padding-top: 20px; padding-bottom: 20px;"> <paper-button raised on-click="{{submitData}}">Submit that Data Doe</paper-button></bs-col>

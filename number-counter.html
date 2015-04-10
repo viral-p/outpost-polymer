@@ -2,9 +2,25 @@
 
 <polymer-element name="number-counter" attributes = "values sumLimit valueLimits">
 	<template>
-		<strong style="text-align:centre">{{id}}</strong>
+        <style>
+            #unit{
+                padding: 7px 7px 7px 7px;
+            }
+            #decreaseButton /deep/ core-icon{
+                color: red;
+                height: 32px;
+                width: 32px;
+            }
+            #increaseButton /deep/ core-icon{
+                color: red;
+                height: 32px;
+                width: 32px;
+            }
+        </style>
+        
+<!--		<strong style="text-align:centre">{{id}}</strong> -->
         <template repeat="{{value, i in values}}">
-            <div>
+            <div id = "unit">
 				<core-icon-button
 				id="decreaseButton"
 				icon="expand-more"

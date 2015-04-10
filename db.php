@@ -162,6 +162,27 @@
             return json_encode($ret->fetch_assoc());
         }
     }
+
+    #gets strat match
+    function getStratMatch($database,$match)
+    {
+        $errRes = array("code" => null, "type" => null, "msg" => null, "object" => null);
+        $schMatch = getScheduledMatch();
+        $sql = "";
+        
+        if(!$ret)
+        {
+            $errRes['code'] = $database->errno;
+            $errRes['msg'] = $database->error;
+            $errRes['type'] = "mySQL database query error";
+            $errRes['object'] = "getStratMatch method";
+            return $errRes;
+        }
+        else
+        {
+            return $ret;
+        }
+    }
  
     function submitData($database, $submit, $id)
     {
