@@ -79,6 +79,7 @@
                 var autoForm = JSON.parse(window.sessionStorage.getItem('autoForm'));
                 var header = JSON.parse(window.sessionStorage.getItem('headerData'));
                 this.submitForm(this.miscForm, teleopForm, autoForm, header);
+                document.querySelector('outpost-header /deep/ paper-tabs').selected = 0;
             }
         });
     </script>

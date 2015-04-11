@@ -103,6 +103,12 @@
             </template>
         </template>
         <script>
+            Polymer ({
+                editMatch: function (){
+                    this.$.overlay.toggle();
+                }
+            });
+
             var extBind = document.querySelector('#external-binding');
             var style = document.querySelector('#style');
 
