@@ -167,8 +167,14 @@
     function getStratMatch($database,$match)
     {
         $errRes = array("code" => null, "type" => null, "msg" => null, "object" => null);
-        $schMatch = getScheduledMatch();
-        $sql = "";
+        $schMatch = json_decode(getScheduledMatch($database, $match));
+        if(!$schMatch)
+        {
+            return json_encode([]);
+        }
+        
+        $sql = "select * from teams where teamnumber = $schMatch->Red1 or teamnumber = $schMatch->Red2 or teamnumber = $schMatch->Red3 or teamnumber = $schMatch->Blue1 or teamnumber = $schMatch->Blue2 or teamnumber = $schMatch->Blue3;";
+        $ret = $database->query($sql);
         
         if(!$ret)
         {
@@ -180,7 +186,12 @@
         }
         else
         {
-            return $ret;
+            $teams = array();
+            while ($row = $ret->fetch_assoc())
+            {
+                array_push($teams, $row);
+            }
+            return json_encode($teams);
         }
     }
  

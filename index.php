@@ -5,7 +5,7 @@
 
     $slim = new \Slim\Slim();
     $slim->response->headers->set('Content-Type', 'application/json');
-    $data = openDatabase('team188_scout');
+    $data = openDatabase('scouttesting');
     
     #get match schedule
     $slim->get('/matches', function ()  use($data, $slim){
