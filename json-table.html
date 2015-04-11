@@ -1,22 +1,93 @@
 <polymer-element name="json-table" attributes = "tableTitle _json">
 	<template>
 		<style>
+            .fixedCol
+            {
+                position: absolute;
+                background-color: white;
+                left: 0;
+                width: 102px;
+                z-index: 2;
+            }
+            .scrollCol
+            {
+                position: relative;
+                left: 15px;
+                width: 200px;
+            }
+            .table
+            {
+                width: 720px;
+                overflow-x: scroll;
+                white-space: nowrap;
+                margin-left: 107px;
+            }
+            .headerRow > div, paper-shadow
+            {
+                padding: 0 5px 0 5px;
+                display: inline-block;
+            }
+            .contentRow > div, paper-shadow
+            {
+                padding: 0 5px 0 5px;
+                display: inline-block;
+            }
 		</style>
 		<b>{{tableTitle}}</b>
-		<table id="display">
-			<tr id="TableHeading">
-				<template repeat="{{heading, i in tableHeadings}}">
-					<th>{{heading}}</th>
-				</template>
-			</tr>
-			<template repeat="{{entry, j in _json}}">
-				<tr>
-					<template repeat="{{heading, i in tableHeadings}}">
-						<td> {{entry[heading]}} </td>
-					</template>
-				</tr>
-			</template>
-		</table>
+		<div  class="table">
+            <div class="headerRow">
+                <template repeat="{{heading, i in tableHeadings}}">
+                    <template if="{{i == 0}}">
+                        <paper-shadow z="3" class="fixedCol">
+                            {{heading}}
+                        </paper-shadow>
+                    </template>
+                    <template if="{{i!=0}}">
+                        <div class="scrollCol">{{heading}}</div>
+                    </template>
+                </template>
+            </div>
+            <template repeat="{{entry, j in _json}}">
+                <div class="contentRow">
+                    <template repeat="{{heading, i in tableHeadings}}">
+                        <template if="{{i == 0}}">
+                            <paper-shadow z="3" class="fixedCol">
+                                {{entry[heading]}}
+                            </paper-shadow>
+                        </template>
+                        <template if="{{i!=0}}">
+                            <div class="scrollCol">{{entry[heading]}}</div>
+                        </template>
+                    </template>
+                </div>
+            </template>
+<!--
+            <table id="display">
+                <tr id="TableHeading">
+                    <template repeat="{{heading, i in tableHeadings}}">
+                        <template if="{{i == 0}}">
+                            <th class="fixedCol">{{heading}}</th>
+                        </template>
+                        <template if="{{i!=0}}">
+                            <th>{{heading}}</th>
+                        </template>
+                    </template>
+                </tr>
+                <template repeat="{{entry, j in _json}}">
+                    <tr>
+                        <template repeat="{{heading, i in tableHeadings}}">
+                            <template if="{{i == 0}}">
+                                <td class="fixedCol"> {{entry[heading]}} </td>
+                            </template>
+                            <template if="{{i!=0}}">
+                                <td> {{entry[heading]}} </td>
+                            </template>
+                        </template>
+                    </tr>
+                </template>
+            </table>
+-->
+        </div>
 	</template>
 	
 	<script>
