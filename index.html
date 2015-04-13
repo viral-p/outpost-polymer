@@ -14,6 +14,7 @@
         <link rel="import" href="bower_components/core-pages/core-pages.html">
         <link rel="import" href="bower_components/paper-dialog/paper-dialog.html">
         <link rel="import" href="bower_components/paper-shadow/paper-shadow.html">
+        <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
         <link rel="import" href="number-counter.html">
         <link rel="import" href="outpost-engage.html">
         <link rel="import" href="outpost-header.html">
@@ -30,27 +31,31 @@
         background-color: #ffffff;
         font-family: 'RobotoDraft', sans-serif;
       }
+
       core-header-panel {
-        height: 100%;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch; 
+          height: 100%;
+          overflow: auto;
+          -webkit-overflow-scrolling: touch;
       }
-        core-scaffold /deep/ core-toolbar{
-            background-color: #E53935; 
-            /* ff888b lighter red*/
-        }
+      core-scaffold /deep/ core-toolbar{
+                               background-color: #E53935;
+                               /* ff888b lighter red*/
+                           }
+      html /deep/ paper-toggle-button::shadow [checked] .toggle {
+          background-color: #FF1744;
+      }
       core-toolbar {
-        color: white;
+          color: white;
       }
       core-menu /deep/ core-icon
+                       {
+                           margin-right: 20px;
+                       }
+      core-scaffold::shadow core-header-panel
       {
-          margin-right: 20px;
+
+          background-color: white;
       }
-    core-scaffold::shadow core-header-panel
-        {
-            
-            background-color: white;
-        }
     </style>
 
     <body unresolved fullbleed>
@@ -103,12 +108,6 @@
             </template>
         </template>
         <script>
-            Polymer ({
-                editMatch: function (){
-                    this.$.overlay.toggle();
-                }
-            });
-
             var extBind = document.querySelector('#external-binding');
             var style = document.querySelector('#style');
 
@@ -142,7 +141,8 @@
                 {
                     if(window.sessionStorage.getItem('instanceId').search(/blue/i) > -1)
                     {
-                        style.sheet.cssRules[2].style.backgroundColor = "#039BE5"
+                        style.sheet.cssRules[2].style.backgroundColor = "#039BE5";
+                        style.sheet.cssRules[3].style.backgroundColor = "#2979FF";
                     }
                     extBind.mode = 0;
                     extBind.scout = true;
