@@ -1,158 +1,158 @@
 <!doctype html>
 <html>
-    <head>
-        <title>Outpost</title>
+<head>
+    <title>Outpost</title>
 
-        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
 
-        <link rel="import" href="bower_components/font-roboto/roboto.html">
-        <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
-        <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
-        <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
-        <link rel="import" href="bower_components/core-menu/core-menu.html">
-        <link rel="import" href="bower_components/paper-item/paper-item.html">
-        <link rel="import" href="bower_components/core-pages/core-pages.html">
-        <link rel="import" href="bower_components/paper-dialog/paper-dialog.html">
-        <link rel="import" href="bower_components/paper-shadow/paper-shadow.html">
-        <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
-        <link rel="import" href="number-counter.html">
-        <link rel="import" href="outpost-engage.html">
-        <link rel="import" href="outpost-header.html">
-        <link rel="import" href="tele-op.html">
-        <link rel="import" href="misc-input-panel.html">
-        <link rel="import" href="auto-form.html">
-        <link rel="import" href="strategy-screen.html">
-    </head>
-    
-    <style id="style">
-      html,body {
+    <link rel="import" href="bower_components/font-roboto/roboto.html">
+    <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
+    <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+    <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="bower_components/core-menu/core-menu.html">
+    <link rel="import" href="bower_components/paper-item/paper-item.html">
+    <link rel="import" href="bower_components/core-pages/core-pages.html">
+    <link rel="import" href="bower_components/paper-dialog/paper-dialog.html">
+    <link rel="import" href="bower_components/paper-shadow/paper-shadow.html">
+    <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
+    <link rel="import" href="number-counter.html">
+    <link rel="import" href="outpost-engage.html">
+    <link rel="import" href="outpost-header.html">
+    <link rel="import" href="tele-op.html">
+    <link rel="import" href="misc-input-panel.html">
+    <link rel="import" href="auto-form.html">
+    <link rel="import" href="strategy-screen.html">
+</head>
+
+<style id="style">
+    html, body {
         height: 100%;
         margin: 0;
         background-color: #ffffff;
         font-family: 'RobotoDraft', sans-serif;
-      }
+    }
 
-      core-header-panel {
-          height: 100%;
-          overflow: auto;
-          -webkit-overflow-scrolling: touch;
-      }
-      core-scaffold /deep/ core-toolbar{
-                               background-color: #E53935;
-                               /* ff888b lighter red*/
-                           }
-      html /deep/ paper-toggle-button::shadow [checked] .toggle {
-          background-color: #FF1744;
-      }
-      core-toolbar {
-          color: white;
-      }
-      core-menu /deep/ core-icon
-                       {
-                           margin-right: 20px;
-                       }
-      core-scaffold::shadow core-header-panel
-      {
+    core-header-panel {
+        height: 100%;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 
-          background-color: white;
-      }
-    </style>
+    core-scaffold /deep/ core-toolbar {
+        background-color: #E53935;
+        /* ff888b lighter red*/
+    }
 
-    <body unresolved fullbleed>
-        <template id="external-binding" is="auto-binding">
-            <template if="{{!gate}}">
-                <outpost-engage></outpost-engage>
-            </template>
-            <template if="{{gate && scout}}">
-                <core-scaffold id="scaffold" responsiveWidth="700px" disableSwipe="true">
-                    <core-header-panel navigation flex>
-                        <core-toolbar>
-                            <div>Menu</div>
-                        </core-toolbar>
-                        <core-menu>
-                            <paper-item on-tap="{{disengage}}">
-                                <core-icon id="decreaseButton" icon="exit-to-app"></core-icon>
-                                Logout
-                            </paper-item>
-                            <paper-item on-tap="{{emend}}">
-                                <core-icon id="replayButton" icon="reply"></core-icon>
-                                Replay Match
-                            </paper-item>
-                        </core-menu>
-                    </core-header-panel>
+    html /deep/ paper-toggle-button::shadow [checked] .toggle {
+        background-color: #FF1744;
+    }
 
-                    <outpost-header tool selected="{{mode}}"></outpost-header>
+    core-toolbar {
+        color: white;
+    }
 
-                    <core-pages selected="{{mode}}" main>
-                        <div>
-                            <auto-form></auto-form>
-                        </div>
-                        <div>
-                            <tele-op></tele-op>
-                        </div>
-                        <div>
-                            <misc-input-panel></misc-input-panel>
-                        </div>
-                    </core-pages>
-                </core-scaffold>
-                <paper-dialog style="height: 400px; width: 300px;"id="replayDialog" backdrop autoCloseDisabled heading="Select Match to Replay" closeSelector="#close">
-                    <paper-input-decorator id="replayMatch-decorator" label="Match ###" floatingLabel>
-                        <input id="replayMatch" type="tel">
-                    </paper-input-decorator>
-                    <paper-button raised on-click="{{prepReplay}}">Submit</paper-button>
-                    <core-icon-button icon="close" style="position: absolute; top: 0px; right: 0px; border: 1px solid; color: red" id="close"></core-icon-button>
-                </paper-dialog>
-            </template>
-            <template if="{{gate && !scout}}">
-                <strategy-screen></strategy-screen>
-            </template>
-        </template>
-        <script>
-            var extBind = document.querySelector('#external-binding');
-            var style = document.querySelector('#style');
+    core-menu /deep/ core-icon {
+        margin-right: 20px;
+    }
 
-            extBind.gate = false;
+    core-scaffold::shadow core-header-panel {
+
+        background-color: white;
+    }
+</style>
+
+<body unresolved fullbleed>
+<template id="external-binding" is="auto-binding">
+    <template if="{{!gate}}">
+        <outpost-engage></outpost-engage>
+    </template>
+    <template if="{{gate && scout}}">
+        <core-scaffold id="scaffold" responsiveWidth="700px" disableSwipe="true">
+            <core-header-panel navigation flex>
+                <core-toolbar>
+                    <div>Menu</div>
+                </core-toolbar>
+                <core-menu>
+                    <paper-item on-tap="{{disengage}}">
+                        <core-icon id="decreaseButton" icon="exit-to-app"></core-icon>
+                        Logout
+                    </paper-item>
+                    <paper-item on-tap="{{emend}}">
+                        <core-icon id="replayButton" icon="reply"></core-icon>
+                        Replay Match
+                    </paper-item>
+                </core-menu>
+            </core-header-panel>
+
+            <outpost-header tool selected="{{mode}}"></outpost-header>
+
+            <core-pages selected="{{mode}}" main>
+                <div>
+                    <auto-form></auto-form>
+                </div>
+                <div>
+                    <tele-op></tele-op>
+                </div>
+                <div>
+                    <misc-input-panel></misc-input-panel>
+                </div>
+            </core-pages>
+        </core-scaffold>
+        <paper-dialog style="height: 400px; width: 300px;" id="replayDialog" backdrop autoCloseDisabled
+                      heading="Select Match to Replay" closeSelector="#close">
+            <paper-input-decorator id="replayMatch-decorator" label="Match ###" floatingLabel>
+                <input id="replayMatch" type="tel">
+            </paper-input-decorator>
+            <paper-button raised on-click="{{prepReplay}}">Submit</paper-button>
+            <core-icon-button icon="close"
+                              style="position: absolute; top: 0px; right: 0px; border: 1px solid; color: red"
+                              id="close"></core-icon-button>
+        </paper-dialog>
+    </template>
+    <template if="{{gate && !scout}}">
+        <strategy-screen></strategy-screen>
+    </template>
+</template>
+
+<script>
+    var extBind = document.querySelector('#external-binding');
+    var style = document.querySelector('#style');
+
+    extBind.gate = false;
+    extBind.scout = false;
+    extBind.mode = 0;
+    extBind.disengage = function () {
+        window.sessionStorage.removeItem('instanceId');
+        extBind.gate = false;
+        window.sessionStorage.clear();
+    };
+    extBind.emend = function () {
+        document.getElementById('replayDialog').open();
+    };
+    extBind.prepReplay = function () {
+        document.querySelector('core-overlay-layer /deep/ #replayDialog').close();
+        document.querySelector('html /deep/ core-scaffold').closeDrawer();
+        var ajax = document.querySelector('outpost-header /deep/ #attain');
+        var replayNumber = document.querySelector('core-overlay-layer /deep/ input');
+        ajax.url = "rest/match/" + replayNumber.value;
+        window.sessionStorage.setItem('replay', replayNumber.value);
+        extBind.mode = 0;
+    };
+    document.addEventListener("engage", function (evt) {
+        extBind.gate = true;
+        if (evt.detail.user === "scout") {
+            if (window.sessionStorage.getItem('instanceId').search(/blue/i) > -1) {
+                style.sheet.cssRules[2].style.backgroundColor = "#039BE5";
+                style.sheet.cssRules[3].style.backgroundColor = "#2979FF";
+            }
+            extBind.mode = 0;
+            extBind.scout = true;
+        }
+        else {
             extBind.scout = false;
             extBind.mode = 0;
-            extBind.disengage = function()
-            {
-                window.sessionStorage.removeItem('instanceId');
-                extBind.gate = false;
-                window.sessionStorage.clear();
-            };
-            extBind.emend = function()
-            {
-                document.getElementById('replayDialog').open();
-            };
-            extBind.prepReplay = function()
-            {
-                document.querySelector('core-overlay-layer /deep/ #replayDialog').close();
-                document.querySelector('html /deep/ core-scaffold').closeDrawer();
-                var ajax = document.querySelector('outpost-header /deep/ #attain');
-                var replayNumber = document.querySelector('core-overlay-layer /deep/ input');
-                ajax.url = "rest/match/" + replayNumber.value;
-                window.sessionStorage.setItem('replay', replayNumber.value);
-                extBind.mode = 0;
-            };
-            document.addEventListener("engage", function(evt)
-            {
-                extBind.gate = true;
-                if(evt.detail.user === "scout")
-                {
-                    if(window.sessionStorage.getItem('instanceId').search(/blue/i) > -1)
-                    {
-                        style.sheet.cssRules[2].style.backgroundColor = "#039BE5";
-                        style.sheet.cssRules[3].style.backgroundColor = "#2979FF";
-                    }
-                    extBind.mode = 0;
-                    extBind.scout = true;
-                }
-                else
-                {
-                    extBind.scout = false;
-                    extBind.mode = 0;
-                }
-            });
-        </script>
-    </body>
+        }
+    });
+</script>
+</body>
 </html>
