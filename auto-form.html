@@ -3,116 +3,121 @@
 <link rel="import" href="bower_components/paper-radio-button/paper-radio-button.html">
 <link rel="import" href="bower_components/core-label/core-label.html">
 <link rel="import" href="bower_components/paper-radio-group/paper-radio-group.html">
-<link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
 
 
 <polymer-element name="auto-form">
     <template>
+        <style id="style">
+            .labels{
+                padding: 7px 7px 7px 7px;
+                height: 50px;
+            }
+            .labels > l
+            {
+                margin: 0;
+                position: relative;
+                top: 34%;
+            }
+
+
+        </style>
         <bs-container>
             <bs-row>
-                <bs-col xs="12"><h4>Mobility</h4></bs-col>
-            </bs-row>
-
-            <bs-row>
-                <bs-col xs="1">
-                    <l> Mobility</l>
-                </bs-col>
-                <bs-col xs="1">
-                    <paper-toggle-button id="mobility" checked="{{auto}}" style="height: 50px; padding-top: 25px">Auto Mobility</paper-toggle-button>
+                <bs-col xs="6">
+                    <div><h4>Recycle Bins form Staging Zone</h4></div>
+                 </bs-col>
+                <bs-col xs="6">
+                    <div><h4>Totes form Staging Zone</h4></div>
                 </bs-col>
             </bs-row>
 
-
             <bs-row>
-                <bs-col xs="4"><h4>Recycle Bin from Staging zone</h4></bs-col>
-                <bs-col xs="4"><h4>Totes from from Staging zone</h4></bs-col>
-            </bs-row>
-
-            <bs-row>
-                <bs-col xs="1" style="padding-top: 30px">
-                    <l>Moved</l>
-                </bs-col>
-                <bs-col xs="3">
-                    <paper-slider id="BinStagingMoved" pin snaps max="3" step="1" value="{{binsMoved}}"
-                                  style=" padding-top:25px"></paper-slider>
-                </bs-col>
-                <bs-col xs="1">
-                    <l>Moved</l>
-                </bs-col>
-                <bs-col xs="3">
-                    <paper-slider id="TotesStagingMoved" pin snaps max="3" step="1" value="{{totesMoved}}"
-                                  style=" padding-top:25px"></paper-slider>
-                </bs-col>
-            </bs-row>
-
-
-            <bs-row>
-                <bs-col xs=1>
-                    <l>Scored</l>
-                </bs-col>
-                <bs-col xs="3">
-                    <paper-slider id="BinStagingScored" pin snaps max="{{binsMoved}}" step="1" value="0"
-                                  style=" padding-top:25px"></paper-slider>
-                </bs-col>
-                <bs-col xs=1>
-                    <l>Scored</l>
+                <bs-col xs="2">
+                    <div class="labels"><l>Moved</l></div>
                 </bs-col>
                 <bs-col xs="4">
-                    <paper-slider id="TotesStagingScored" pin snaps max="{{totesMoved}}" step="1" value="0"
-                                  style=" padding-top:25px"></paper-slider>
-                </bs-col>
-            </bs-row>
+                    <number-counter id = "BinStagingMoved" values = [0] valueLimits = [3]></number-counter>
 
-            <bs-row>
-                <bs-col xs="4"></bs-col>
-                   <bs-col xs="1"> <l>Stack Scored</l>
                 </bs-col>
                 <bs-col xs="2">
-                    <paper-toggle-button id="stackScored" checked="{{StackScored}}" style="height: 50px; padding-top: 25px">Auto Mobility</paper-toggle-button>
-                </bs-col>
-            </bs-row>
-
-
-            <bs-row>
-                <bs-col xs="4"><h4>Recycle Bins from Step</h4></bs-col>
-                <bs-col xs="4"><h4>Totes from Step</h4></bs-col>
-            </bs-row>
-
-            <bs-row>
-                <bs-col xs="4">
-                    <l>Acquired</l>
+                    <div class="labels"><l>Moved</l></div>
                 </bs-col>
                 <bs-col xs="4">
-                    <l>Acquired</l>
-                </bs-col>
-            </bs-row>
+                    <number-counter id = "TotesStagingMoved" values = [0] valueLimits = [3]></number-counter>
 
-            <bs-row>
-                <bs-col xs="1">
-                    <paper-toggle-button id="binsStep" checked="{{BinsStep}}" style="height: 50px; padding-top: 25px">Auto Mobility</paper-toggle-button>
-                </bs-col>
-                <bs-col xs="3"></bs-col>
-                <bs-col xs="1">
-                    <paper-toggle-button id="totesStep" checked="{{TotesStep}}" style="height: 50px; padding-top: 25px">Auto Mobility</paper-toggle-button>
                 </bs-col>
             </bs-row>
 
 
             <bs-row>
-                <bs-col xs="4"><h4>Totes from Landfill</h4></bs-col>
+                <bs-col xs=2>
+                    <div class="labels"><l>Scored</l></div>
+                </bs-col>
+                <bs-col xs="4">
+                    <number-counter id = "BinStagingScored" values = [0] valueLimits = [3]></number-counter>
+                </bs-col>
+                <bs-col xs="2">
+                    <div class="labels"><l>Scored</l></div>
+                </bs-col>
+                <bs-col xs="4">
+                    <number-counter id = "TotesStagingScored" values = [0] valueLimits = [3]></number-counter>
+
+                </bs-col>
             </bs-row>
 
             <bs-row>
-                <bs-col xs="1">
-                    <l>Acquired</l>
+                <bs-col xs="6"></bs-col>
+                <bs-col xs="2">
+                    <div class="labels"><l>Stack Scored</l></div>
                 </bs-col>
-                <bs-col xs="1">
-                    <paper-toggle-button id="totesLandfill" checked="{{TotesLandfill}}" style="height: 50px; padding-top: 25px"></paper-toggle-button>
+                <bs-col xs="4">
+                    <paper-toggle-button id="stackScored" checked="{{StackScored}}" style="height: 50px; padding-top: 30px; padding-left: 25px"></paper-toggle-button>
                 </bs-col>
             </bs-row>
 
-            <bs-col xs="4">
-                <paper-button raised on-click="{{submitData}}">Submit that Data Doe</paper-button>
+  <bs-row>
+                <bs-col xs="6"><h4>Recycle Bins from Step</h4></bs-col>
+      <bs-col xs="6"><div><h4>Mobility</h4></div></bs-col>
+            </bs-row>
+            <bs-row>
+               
+                <bs-col xs="2">
+                    <div class="labels"><l>Acquired</l></div>
+                </bs-col>
+                <bs-col xs="4">
+                    <number-counter id = "BinsStep" values = [0] valueLimits = [4]></number-counter>
+                </bs-col>
+                <bs-col xs="2">
+                    <div class="labels"><l>Auto Zone</l></div>
+                </bs-col>
+                 <bs-col xs="4">
+                    <paper-toggle-button id="mobility" checked="{{auto}}" style="height: 50px; padding-top: 25px ; padding-left: 25px">Auto Mobility</paper-toggle-button>
+                </bs-col>
+            </bs-row>
+
+            
+            <bs-row>
+                <bs-col xs="6"><div><h4>Totes from Step</h4></div></bs-col>
+                <bs-col xs="6"><div><h4>Totes form Landfill</h4></div></bs-col>
+            </bs-row>
+
+            <bs-row>
+                <bs-col xs="2">
+                    <div class="labels"><l>Acquired</l></div>
+                </bs-col>
+                <bs-col xs="4">
+                    <paper-toggle-button id="totesStep" checked="{{TotesStep}}" style="height: 50px; padding-top: 25px; padding-left: 25px">Auto Mobility</paper-toggle-button>
+                </bs-col>
+                <bs-col xs="2">
+                    <div class="labels"><l>Acquired</l></div>
+                 </bs-col>
+                <bs-col xs="4">
+                    <paper-toggle-button id="totesLandfill" checked="{{TotesLandfill}}" style="height: 50px; padding-top: 25px; padding-left: 25px"></paper-toggle-button>
+                </bs-col>
+            </bs-row>
+
+            <bs-col xs="12">
+                <paper-button raised on-click="{{submitData}}">Submit That Auto Data Doe</paper-button>
             </bs-col>
 
 
@@ -122,8 +127,8 @@
         Polymer({
             binsMoved: 0,
             totesMoved: 0,
+            binsStep: 0,
             auto: false,
-            BinsStep: false,
             TotesStep: false,
             TotesLandfill: false,
             StackScored: false,
@@ -131,14 +136,14 @@
                 var AutoForm = {};
 
                 AutoForm["AutoMobility"] = this.auto? 1 : 0;
-                AutoForm["AutoBinsMoved"] = this.$.BinStagingMoved.value;
-                AutoForm["AutoBinsScored"] = this.$.BinStagingScored.value;
-                AutoForm["AutoTotesMoved"] = this.$.TotesStagingMoved.value;
+                AutoForm["AutoBinsMoved"] = this.$.BinStagingMoved.values[0];
+                AutoForm["AutoBinsScored"] = this.$.BinStagingScored.values[0];
+                AutoForm["AutoTotesMoved"] = this.$.TotesStagingMoved.values[0];
                 AutoForm["AutoTotesStacked"] = this.StackScored? 1: 0;
-                AutoForm["AutoTotesScored"] = this.$.TotesStagingScored.value;
+                AutoForm["AutoTotesScored"] = this.$.TotesStagingScored.values[0];
                 AutoForm["LandfillTotesAcquired"] = this.TotesLandfill? 1: 0;
                 AutoForm["StepTotesAcquired"] = this.TotesStep? 1:0;
-                AutoForm["StepBinsAcquired"] = this.BinsStep? 1: 0;
+                AutoForm["StepBinsAcquired"] = this.$.BinsStep.values[0];
 
                 window.sessionStorage.setItem("autoForm", JSON.stringify(AutoForm));
                 document.querySelector('outpost-header /deep/ paper-tabs').selected++;

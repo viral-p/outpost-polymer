@@ -2,6 +2,7 @@
 <link rel="import" href="json-table.html">
 <link rel="import" href="bower_components/core-ajax/core-ajax.html">
 <link rel="import" href="bower_components/paper-button/paper-button.html">
+<link rel="import" href="bower_components/paper-toast/paper-toast.html">
 
 <polymer-element name="strategy-screen" attributes = "tableData">
 	<template>
@@ -71,6 +72,15 @@
 				var input = this.$.numberInput.value;
 				this.$.ajaxRequest.url = "../../rest/team/" + input;
                 this.isTeamPage = true;
+                var team = this.$.numberInput.value;
+
+                if (team !== ""){
+                    this.url = "robotPhotos/" + team + ".jpg";
+                }
+                else {
+                    this.msg = "Don't be dumb! Enter a Team Number";
+                    this.$.toast.show();
+                }
 			},
 			getMatch: function(){
 				var input = this.$.numberInput.value;
