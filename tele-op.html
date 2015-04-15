@@ -34,14 +34,14 @@
                 <bs-col xs="12"><h3>Tele Op</h3></bs-col>
             </bs-row>
 -->
-			<bs-row style = "border-bottom: 3px solid #64FFDA">
+			<bs-row style = "border-bottom: 3px solid #666">
 				<bs-col xs="2" style="padding-right: 0;">
 					<div class="labels"><h5>Landfill</h5></div>
 					<div class="labels"><h5>Human Load</h5></div>
 					<div class="labels"><h5>Step</h5></div>
 					<div class="labels"><h5>Upside Down</h5></div>
 				</bs-col>
-				<bs-col xs="4" style ="border-right: 3px solid #64FFDA">
+				<bs-col xs="4" style ="border-right: 3px solid #666">
                     <number-counter id = "totesAcquired" values = [0,0,0,0] valueLimits = [28,33,12,100]></number-counter>
                 </bs-col>
 				<bs-col xs="2">
@@ -53,7 +53,7 @@
                     <number-counter id = "binsAcquired" values = [0,0,0] valueLimits = [4,7,7]></number-counter>
                 </bs-col>
 			</bs-row>
-			<bs-row style = "border-bottom: 3px solid #64FFDA">
+			<bs-row style = "border-bottom: 3px solid #666">
 				<bs-col xs="2" style="padding-right: 0;">
 					<div class="labels"><h5>Level 6</h5></div>
 					<div class="labels"><h5>Level 5</h5></div>
@@ -62,7 +62,7 @@
 					<div class="labels"><h5>Level 2</h5></div>
 					<div class="labels"><h5>Level 1</h5></div>
 				</bs-col>
-				<bs-col xs="4" style ="border-right: 3px solid #64FFDA">
+				<bs-col xs="4" style ="border-right: 3px solid #666">
                     <number-counter id = "totesScored" values = [0,0,0,0,0,0]></number-counter>
                 </bs-col>
 				<bs-col xs="2">
@@ -81,14 +81,14 @@
 				<bs-col xs="2" style="padding-right: 0;">
                     <div class="labels"><h5>Litter Processed</h5></div>
 				</bs-col>
-				<bs-col xs="4" style ="border-right: 3px solid #64FFDA">
+				<bs-col xs="4" style ="border-right: 3px solid #666">
                     <number-counter id = "litterProcessed" values = [0] sumLimit = 10></number-counter>
                 </bs-col>
 				<bs-col xs="2"><div class="labels"><h5>Litter Capped</h5></div></bs-col>
 				<bs-col xs="4"><number-counter id = "litterCapped" values = [0] sumLimit = 10></number-counter></bs-col>
 			</bs-row>
             <bs-row>
-                <bs-col xs="3" style="padding-top: 20px; padding-bottom: 20px;"> <paper-button raised on-click="{{submitData}}">Submit that TeleOp Data Doe</paper-button></bs-col>
+                <bs-col xs="12" style="padding-top: 20px; padding-bottom: 20px;"> <paper-button raised on-click="{{submitData}}">Submit that TeleOp Data Doe</paper-button></bs-col>
             </bs-row>
 		</bs-container>
         <paper-toast id="toast" text="{{msg}}" duration="3000"></paper-toast>
