@@ -1,0 +1,33 @@
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+<link rel="import" href="bower_components/paper-input/paper-input-decorator.html">
+<link rel="import" href="bower_components/paper-input/paper-input.html">
+<link rel="import" href="bower_components/paper-toast/paper-toast.html">
+
+<polymer-element name="pit-scouting">
+    <template>
+        <style id="style">
+        </style>
+        <paper-input-decorator id="decorator" label="Team" floatingLabel>
+            <input id="teamNumber" type="tel">
+        </paper-input-decorator>
+        <paper-button raised on-click="{{getImage}}">Get that Image Doe</paper-button>
+        <img src="{{url}}" id="image"/>
+        <paper-toast id="toast" text="{{msg}}" duration="3000"></paper-toast>
+
+    </template>
+    <script>
+        Polymer({
+            getImage: function (){
+                var team = this.$.teamNumber.value;
+
+                if (team !== ""){
+                    this.url = "robotPhotos/" + team + ".jpg";
+                }
+                else {
+                    this.msg = "Don't be dumb! Enter a Team Number";
+                    this.$.toast.show();
+                }
+            }
+        });
+    </script>
+</polymer-element>

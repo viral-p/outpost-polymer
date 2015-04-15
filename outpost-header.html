@@ -7,10 +7,12 @@
     <style>
         .formHeaderMedium {
             font-size: 20px;
+            color: black;
         }
 
         .formHeaderSmall {
             font-size: 16px;
+            color: black;
         }
 
         #matchTabs {
@@ -22,12 +24,7 @@
         }
     </style>
 
-    <core-ajax id="attain"
-               auto
-               url="/{{survey}}"
-               handleAs="json"
-               headers='{"Content-Type": "application/json"}'
-               on-core-response="{{operational}}">
+    <core-ajax id="attain" auto url="/{{survey}}"  handleAs="json"  headers='{"Content-Type": "application/json"}'    on-core-response="{{operational}}">
     </core-ajax>
 
     <div horizontal layout center>
@@ -43,8 +40,8 @@
                     <bs-col xs="6">{{opponent}} {{opposition[0]}}, {{opposition[1]}}, {{opposition[2]}}</bs-col>
                 </span>
                 <span class="formHeaderMedium">
-                    <bs-col xs="6">Match: <u style="color: #64FFDA;">{{matchNumber}}</u></bs-col>
-                    <bs-col xs="6">Team: <u style="color: #64FFDA;">{{teamNumber}}</u></bs-col>
+                    <bs-col xs="6">Match: <u style="color: #FFF;">{{matchNumber}}</u></bs-col>
+                    <bs-col xs="6">Team: <u style="color: #FFF;">{{teamNumber}}</u></bs-col>
                 </span>
         </div>
     </div>
