@@ -2,6 +2,7 @@
 <link rel="import" href="json-table.html">
 <link rel="import" href="bower_components/core-ajax/core-ajax.html">
 <link rel="import" href="bower_components/paper-button/paper-button.html">
+<link rel="import" href="bower_components/paper-toast/paper-toast.html">
 
 <polymer-element name="strategy-screen" attributes = "tableData">
 	<template>
@@ -11,6 +12,8 @@
 		<paper-button id="Team" on-click="{{getTeam}}">Find Team</paper-button>
 		<paper-button id="Match" on-click="{{getMatch}}">Find Match</paper-button>
 		<json-table _json= "{{tableData}}" id="tableView"></json-table>
+        <img src="{{url}}" id="image"/>
+        <paper-toast id="toast" text="{{msg}}" duration="3000"></paper-toast>
 		<core-ajax id="ajaxRequest"
 				   auto
 				   method="GET"
@@ -37,6 +40,15 @@
 			getTeam: function(){
 				var input = this.$.numberInput.value;
 				this.$.ajaxRequest.url = "../../rest/team/" + input;
+                var team = this.$.numberInput.value;
+
+                if (team !== ""){
+                    this.url = "robotPhotos/" + team + ".jpg";
+                }
+                else {
+                    this.msg = "Don't be dumb! Enter a Team Number";
+                    this.$.toast.show();
+                }
 			},
 			getMatch: function(){
 				var input = this.$.numberInput.value;
