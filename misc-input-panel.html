@@ -1,5 +1,6 @@
 <link rel="import" href="bower_components/paper-input/paper-input-decorator.html">
 <link rel="import" href="bower_components/paper-input/paper-autogrow-textarea.html">
+<link rel="import" href="bower_components/paper-toast/paper-toast.html">
 
 <polymer-element name="misc-input-panel">
     <template>
@@ -11,12 +12,12 @@
                     </paper-input-decorator>
                 </bs-col>
                 <bs-col sm=2>
-                    <paper-input-decorator id="alliance-decorator" label="Red Score" floatingLabel>
+                    <paper-input-decorator id="alliance-decorator" label="Alliance Score" floatingLabel>
                         <input id="alliance" type="tel">
                     </paper-input-decorator>
                 </bs-col>
                 <bs-col sm=2>
-                    <paper-input-decorator id="opponent-decorator" label="Blue Score" floatingLabel>
+                    <paper-input-decorator id="opponent-decorator" label="Opponent Score" floatingLabel>
                         <input id="opponent" type="tel">
                     </paper-input-decorator>
                 </bs-col>
@@ -44,6 +45,9 @@
                               style="position: absolute; bottom: 10px; left: 10px; border: 1px solid; color: green"
                               id="accept"></core-icon-button>
         </paper-dialog>
+        
+        <paper-toast id="toast" text="{{msg}}" duration="3000"></paper-toast>
+        
     </template>
     <script>
         Polymer({
@@ -60,6 +64,10 @@
             confirm: function () {
                 this.$.confirmation.open();
             },
+<<<<<<< HEAD
+=======
+            msg: '', 
+>>>>>>> e242d6adbaa23eaf656d8b5860c2d38c46b345c9
             submitForm: function (misc, tele, auto, header) {
                 this.fire('submit-form', {misc: misc, teleop: tele, auto: auto, header: header});
             },
@@ -68,17 +76,34 @@
                 this.miscForm["OpponentScore"] = this.$.opponent.value.search(/[0-9]+/) > -1 ? parseInt(this.$.opponent.value) : 0;
                 this.miscForm["Penalties"] = this.$.penalty.value.search(/[0-9]+/) > -1 ? parseInt(this.$.penalty.value) : 0;
                 this.miscForm["Comments"] = this.$.comments.value;
+                if(window.sessionStorage.getItem('teleopForm') == null ){
+                    if(window.sessionStorage.getItem('autoForm') == null){
+                        this.msg = 'You peice of idiot. Go submit Auto and Tele.';
+                    }
+                    else{
+                        this.msg = 'Why you being dumb? Go submit Teleop Data.';
+                    }
+                    this.$.toast.show();
+                }
+                else if(window.sessionStorage.getItem('autoForm') == null){
+                    this.msg = 'Forgetting something. Go submit Auto.';
+                    this.$.toast.show();
+                }
+                else {
+                    this.msg = ("Successful Form Submission");
+                    this.$.toast.show();
+                    
+                    this.$.alliance.value = "";
+                    this.$.opponent.value = "";
+                    this.$.penalty.value = "";
+                    this.$.comments.value = "";
 
-                this.$.alliance.value = "";
-                this.$.opponent.value = "";
-                this.$.penalty.value = "";
-                this.$.comments.value = "";
-
-                window.sessionStorage.setItem("miscForm", JSON.stringify(this.miscForm));
-                var teleopForm = JSON.parse(window.sessionStorage.getItem('teleopForm'));
-                var autoForm = JSON.parse(window.sessionStorage.getItem('autoForm'));
-                var header = JSON.parse(window.sessionStorage.getItem('headerData'));
-                this.submitForm(this.miscForm, teleopForm, autoForm, header);
+                    window.sessionStorage.setItem("miscForm", JSON.stringify(this.miscForm));
+                    var teleopForm = JSON.parse(window.sessionStorage.getItem('teleopForm'));
+                    var autoForm = JSON.parse(window.sessionStorage.getItem('autoForm'));
+                    var header = JSON.parse(window.sessionStorage.getItem('headerData'));
+                    this.submitForm(this.miscForm, teleopForm, autoForm, header);
+                }
             }
         });
     </script>
