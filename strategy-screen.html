@@ -40,6 +40,11 @@
                     <json-table _json= "{{tableData}}" id="tableView"></json-table>
                 </bs-col>
             </bs-row>
+            <template if="{{isTeamPage}}">
+                <bs-row>
+                    <img src={{url}}>
+                </bs-row>
+            </template>
         </div>
 		
 		<core-ajax id="ajaxRequest"
