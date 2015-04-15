@@ -5,12 +5,42 @@
 
 <polymer-element name="strategy-screen" attributes = "tableData">
 	<template>
-		<paper-button id="Teams" on-click="{{getTeamList}}">Team List</paper-button>
-		<paper-button id="Matches" on-click="{{getMatchSchedule}}">Match Schedule</paper-button>
-		<input id="numberInput">
-		<paper-button id="Team" on-click="{{getTeam}}">Find Team</paper-button>
-		<paper-button id="Match" on-click="{{getMatch}}">Find Match</paper-button>
-		<json-table _json= "{{tableData}}" id="tableView"></json-table>
+        <style>
+            .columnSelect
+            {
+            }
+            img
+            {
+                width: 100%;
+            }
+        </style>
+        <div style="padding: 0px 15px 0px 15px;">
+            <bs-row>
+                <bs-col xs="6">
+                    <paper-button id="Matches" on-click="{{getMatchSchedule}}">Match Schedule</paper-button>
+                </bs-col>
+                <bs-col xs="6">
+                    <input id="numberInput">
+                </bs-col>
+            </bs-row>
+            <bs-row>
+                <bs-col xs="6">
+                    <paper-button id="Teams" on-click="{{getTeamList}}">Team Summary</paper-button>
+                </bs-col>
+                <bs-col xs="3" style="padding-right: 0px;">
+                    <paper-button id="Team" on-click="{{getTeam}}">Find Team</paper-button>
+                </bs-col>
+                <bs-col xs="3" style="padding-left: 0px;">
+                    <paper-button id="Match" on-click="{{getMatch}}">Find Match</paper-button>
+                </bs-col>
+            </bs-row>
+            <bs-row>
+                <bs-col xs="12">
+                    <json-table _json= "{{tableData}}" id="tableView"></json-table>
+                </bs-col>
+            </bs-row>
+        </div>
+		
 		<core-ajax id="ajaxRequest"
 				   auto
 				   method="GET"
@@ -25,22 +55,27 @@
 	<script>
 		Polymer({
 			tableData: [],
+            isTeamPage: false,
 			tableDataChanged: function(oldValue, newValue){
 				this.$.tableView._json = newValue;
 			},
 			getMatchSchedule: function(){
 				this.$.ajaxRequest.url = "../../rest/matches";
+                this.isTeamPage = false;
 			},
 			getTeamList: function(){
 				this.$.ajaxRequest.url = "../../rest/teams";
+                this.isTeamPage = false;
 			},
 			getTeam: function(){
 				var input = this.$.numberInput.value;
 				this.$.ajaxRequest.url = "../../rest/team/" + input;
+                this.isTeamPage = true;
 			},
 			getMatch: function(){
 				var input = this.$.numberInput.value;
 				this.$.ajaxRequest.url = "../../rest/strat/" + input;
+                this.isTeamPage = false;
 			},
 			Response: function(){
                 if(this.$.ajaxRequest.response)
