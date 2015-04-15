@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48faec9b-143e-4b5b-b69e-8d2dbae95679" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/image-search.html" />
       <change type="DELETED" beforePath="C:\wamp\www\rest\robotPhotos\.jpg" afterPath="" />
       <change type="DELETED" beforePath="C:\wamp\www\rest\robotPhotos\188" afterPath="" />
       <change type="DELETED" beforePath="C:\wamp\www\rest\robotPhotos\1889.jpg" afterPath="" />
       <change type="DELETED" beforePath="C:\wamp\www\rest\robotPhotos\appointment-checklist-banner-french.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/robotPhotos/Thumbs.db" afterPath="$PROJECT_DIR$/robotPhotos/Thumbs.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pit-scouting.html" afterPath="$PROJECT_DIR$/pit-scouting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.html" afterPath="$PROJECT_DIR$/test.html" />
     </list>
     <ignored path="finished.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,27 +43,27 @@
       <file leaf-file-name="test.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-35.307693" vertical-offset="0" max-vertical-offset="1326">
-              <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
+            <state vertical-scroll-proportion="-1.9615384" vertical-offset="17" max-vertical-offset="935">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pit-scouting.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="pit-scouting.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pit-scouting.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="833">
-              <caret line="6" column="38" selection-start-line="0" selection-start-column="0" selection-end-line="43" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.2197092" vertical-offset="0" max-vertical-offset="619">
+              <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="image-search.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="image-search.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/image-search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8788368" vertical-offset="0" max-vertical-offset="646">
+            <state vertical-scroll-proportion="-20.923077" vertical-offset="0" max-vertical-offset="646">
               <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
               <folding />
             </state>
@@ -143,9 +142,9 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/outpost-header.html" />
         <option value="$PROJECT_DIR$/auto-form.html" />
+        <option value="$PROJECT_DIR$/image-search.html" />
         <option value="$PROJECT_DIR$/pit-scouting.html" />
         <option value="$PROJECT_DIR$/test.html" />
-        <option value="$PROJECT_DIR$/image-search.html" />
       </list>
     </option>
   </component>
@@ -648,26 +647,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/image-search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.923077" vertical-offset="0" max-vertical-offset="646">
+          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-35.307693" vertical-offset="0" max-vertical-offset="1326">
-          <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
+        <state vertical-scroll-proportion="-1.9615384" vertical-offset="17" max-vertical-offset="935">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pit-scouting.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="833">
-          <caret line="6" column="38" selection-start-line="0" selection-start-column="0" selection-end-line="43" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/image-search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8788368" vertical-offset="0" max-vertical-offset="646">
-          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.2197092" vertical-offset="0" max-vertical-offset="619">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
           <folding />
         </state>
       </provider>
