@@ -1,28 +1,89 @@
 <polymer-element name="json-table" attributes = "tableTitle _json">
 	<template>
 		<style>
+            .fixedCol
+            {
+                position: absolute;
+                background-color: #666;
+                left: 15px;
+                width: 102px;
+                z-index: 2;
+                box-shadow: 5px 3px 4px -1px rgba(0, 0, 0, 0.3);
+                cursor: cell;
+                color: white;
+            }
+            .fixedColHeader
+            {
+                position: absolute;
+                background-color: #666;
+                left: 15px;
+                width: 102px;
+                z-index: 2;
+                box-shadow: 5px 3px 4px -1px rgba(0, 0, 0, 0.3);
+                cursor: cell;
+                color: white;
+            }
+            .table
+            {
+                display: block;
+                overflow-x: scroll;
+                white-space: nowrap;
+                margin-left: 115px;
+                font-size: 14px;
+            }
+            tr
+            {
+                background-color: #1de9b6;
+            }
+            th
+            {
+                border-bottom: 3px solid white;
+                padding: 10px 5px 10px 5px;
+                background-color: #666;
+                color: white;
+            }
+            td
+            {
+                padding-right: 10px;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                text-align: center;
+            }
 		</style>
 		<b>{{tableTitle}}</b>
-		<table id="display">
-			<tr id="TableHeading">
-				<template repeat="{{heading, i in tableHeadings}}">
-					<th>{{heading}}</th>
-				</template>
-			</tr>
-			<template repeat="{{entry, j in _json}}">
-				<tr>
-					<template repeat="{{heading, i in tableHeadings}}">
-						<td> {{entry[heading]}} </td>
-					</template>
-				</tr>
-			</template>
-		</table>
+            <table class="table" id="display" cellspacing=0>
+                <tr id="TableHeading">
+                    <template repeat="{{heading, i in tableHeadings}}">
+                        <template if="{{i == 0}}">
+                            <th class="fixedColHeader">{{heading}}</th>
+                        </template>
+                        <template if="{{i!=0}}">
+                            <th>{{heading}}</th>
+                        </template>
+                    </template>
+                </tr>
+                <template repeat="{{entry, j in _json}}">
+                    <tr id="contentRows">
+                        <template repeat="{{heading, i in tableHeadings}}">
+                            <template if="{{i == 0}}">
+                                <td class="fixedCol" on-click="{{highlightRow}}"> {{entry[heading]}} </td>
+                            </template>
+                            <template if="{{i!=0}}">
+                                <td> {{entry[heading]}} </td>
+                            </template>
+                        </template>
+                    </tr>
+                </template>
+            </table>
 	</template>
 	
 	<script>
 		Polymer({
             _json: [],
+            lastRowHighlight: null,
+            lastHeaderHighlight: null,
 			tableTitle: "JSON-Table",
+            summaryHeadings: ["AverageOver", "Penalties", "AllianceScore", "OpponentScore", "AutoMobility", "AutoBinsMoved", "AutoBinsScored", "AutoTotesMoved", "AutoTotesStacked", "AutoTotesScored", "LandfillTotesAcquired", "StepTotesAcquired", "StepBinsAcquired", "TotesScored", "BinsScored", "TotesAcquiredLandfill", "TotesAcquiredHumanLoad", "TotesAcquiredStep", "BinsAcquiredStep", "BinsAcquiredZone", "UpsideDownTotesAcquired", "NonUprightBinsAcquired", "LitterProcessed", "LitterCapped"],
 			tableHeadings: ["MatchNumber", "Red1", "R1S", "Red2", "R2S", "Red3", "R3S", "Blue1", "B1S", "Blue2", "B2S", "Blue3", "B3S"],
 			createHeaders: function(){
 				this.tableHeadings = Object.keys(this._json[0]);
@@ -33,6 +94,23 @@
                     this.tableHeadings = Object.keys(this._json[0]);
                 }
 			},
+            highlightRow: function(evt)
+            {
+                var row = evt.target.parentElement;
+                if(this.lastRowHighlight && this.lastHeaderHighlight)
+                {
+                    this.lastRowHighlight.style.backgroundColor = "#1de9b6";
+                    this.lastHeaderHighlight.style.backgroundColor = "#666";
+                    this.lastRowHighlight.style.color = "black";
+                    this.lastHeaderHighlight.style.color = "white";
+                }
+                row.style.backgroundColor = "#666";
+                row.style.color = "white";
+                evt.target.style.backgroundColor = "#1de9b6";
+                evt.target.style.color = "black";
+                this.lastRowHighlight = row;
+                this.lastHeaderHighlight = evt.target;
+            },
 			ready: function(){
 				if(typeof this._json == "string"){
 					this._json = JSON.parse(this._json);

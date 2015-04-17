@@ -162,6 +162,38 @@
             return json_encode($ret->fetch_assoc());
         }
     }
+
+    #gets strat match
+    function getStratMatch($database,$match)
+    {
+        $errRes = array("code" => null, "type" => null, "msg" => null, "object" => null);
+        $schMatch = json_decode(getScheduledMatch($database, $match));
+        if(!$schMatch)
+        {
+            return json_encode([]);
+        }
+        
+        $sql = "select * from teams where teamnumber = $schMatch->Red1 or teamnumber = $schMatch->Red2 or teamnumber = $schMatch->Red3 or teamnumber = $schMatch->Blue1 or teamnumber = $schMatch->Blue2 or teamnumber = $schMatch->Blue3;";
+        $ret = $database->query($sql);
+        
+        if(!$ret)
+        {
+            $errRes['code'] = $database->errno;
+            $errRes['msg'] = $database->error;
+            $errRes['type'] = "mySQL database query error";
+            $errRes['object'] = "getStratMatch method";
+            return $errRes;
+        }
+        else
+        {
+            $teams = array();
+            while ($row = $ret->fetch_assoc())
+            {
+                array_push($teams, $row);
+            }
+            return json_encode($teams);
+        }
+    }
  
     function submitData($database, $submit, $id)
     {

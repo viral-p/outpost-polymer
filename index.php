@@ -74,6 +74,18 @@
 		$data->close();
     });
 
+     //get match record for strat screen
+    $slim->get('/strat/:match', function ($match)  use($data, $slim){
+		$stratMatchRecord = getStratMatch($data, $match);
+        if(is_array($stratMatchRecord))
+        {
+            $slim->response->setStatus(500);
+            $stratMatchRecord = json_encode($stratMatchRecord);
+        }
+        echo $stratMatchRecord;
+		$data->close();
+    });
+
     #submit a form of data
     $slim->post('/form/:id', function ($id)  use($data, $slim){
 		$result = submitData($data, $slim->request->getBody(), $id);
